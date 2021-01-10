@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import KeyValueTable from "./components/key-value-table";
+import { useContext } from 'react';
+import KeyValueTable from './components/key-value-table';
 import { ServerStatusContext } from '../utils/server-status-context';
 import { Typography } from 'antd';
 import Link from 'next/link';

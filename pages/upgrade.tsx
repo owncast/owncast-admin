@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import { Table, Typography } from "antd";
-import { getGithubRelease } from "../utils/apis";
+import { useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
+import { Table, Typography } from 'antd';
+import { getGithubRelease } from '../utils/apis';
 
 const { Title } = Typography;
 
@@ -66,4 +66,3 @@ export default function Logs() {
     </div>
   );
 }
-

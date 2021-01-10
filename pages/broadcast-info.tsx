@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { ServerStatusContext } from '../utils/server-status-context';
 
 

@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Table, Typography, Input } from 'antd';
 import { isEmptyObject } from '../utils/format';
-import KeyValueTable from "./components/key-value-table";
+import KeyValueTable from './components/key-value-table';
 import { ServerStatusContext } from '../utils/server-status-context';
 import adminStyles from '../styles/styles.module.scss';
 
@@ -50,7 +50,7 @@ function InstanceDetails({ config }) {
   }
 
   const { instanceDetails = {}, yp, streamKey, ffmpegPath, webServerPort } = config;
-  
+
   const data = [
     {
       name: "Server name",
@@ -133,9 +133,8 @@ export default function ServerConfig() {
       <InstanceDetails config={config} />
       <SocialHandles config={config} />
       <PageContent config={config} />
-      
+
       <Title level={5}>Learn more about configuring Owncast <a href="https://owncast.online/docs/configuration">by visiting the documentation.</a></Title>
     </>
-  ); 
+  );
 }
-

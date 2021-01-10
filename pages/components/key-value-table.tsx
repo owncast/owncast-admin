@@ -1,4 +1,4 @@
-import { Table, Typography } from "antd";
+import { Table, Typography } from 'antd';
 
 const { Title } = Typography;
 
@@ -25,6 +25,6 @@ export default function KeyValueTable({ title, data }: KeyValueTableProps) {
 }
 
 interface KeyValueTableProps {
-  title: string, 
+  title: string,
   data: any,
 };

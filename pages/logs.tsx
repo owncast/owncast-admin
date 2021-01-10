@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import LogTable from "./components/log-table";
+import { useState, useEffect } from 'react';
+import LogTable from './components/log-table';
 
 import {
   LOGS_ALL,
@@ -33,6 +33,5 @@ export default function Logs() {
     };
   }, []);
 
-  return <LogTable logs={logs} pageSize={20}/>;  
+  return <LogTable logs={logs} pageSize={20}/>;
 }
-

@@ -1,7 +1,6 @@
-import React from "react";
-import { Table, Tag, Typography } from "antd";
-import Linkify from "react-linkify";
-import { SortOrder } from "antd/lib/table/interface";
+import { Table, Tag, Typography } from 'antd';
+import Linkify from 'react-linkify';
+import { SortOrder } from 'antd/lib/table/interface';
 import format from 'date-fns/format'
 
 const { Title } = Typography;
@@ -88,4 +87,3 @@ export default function LogTable({ logs, pageSize }: Props) {
     </div>
   );
 }
-

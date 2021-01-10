@@ -1,9 +1,9 @@
-import { Typography, Statistic, Card, Progress} from "antd";
+import { Typography, Statistic, Card, Progress} from 'antd';
 
 const { Text } = Typography;
 
 interface StatisticItemProps {
-  title?: string, 
+  title?: string,
   value?: any,
   prefix?: JSX.Element,
   color?: string,
@@ -12,7 +12,7 @@ interface StatisticItemProps {
   formatter?: any,
 };
 const defaultProps = {
-  title: '', 
+  title: '',
   value: 0,
   prefix: null,
   color: '',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { STATUS, fetchData, FETCH_INTERVAL, SERVER_CONFIG } from './apis';
@@ -33,7 +33,7 @@ const initialServerStatusState = {
   versionNumber: '0.0.0',
 };
 
-export const ServerStatusContext = React.createContext({
+export const ServerStatusContext = createContext({
   ...initialServerStatusState,
   serverConfig: initialServerConfigState,
 });

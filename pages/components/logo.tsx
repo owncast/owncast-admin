@@ -1,4 +1,3 @@
-import React from 'react';
 import adminStyles from '../../styles/styles.module.scss';
 
 export default function Logo() {

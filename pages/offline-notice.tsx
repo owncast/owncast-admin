@@ -1,7 +1,7 @@
-import { Result, Card } from "antd";
+import { Result, Card } from 'antd';
 import { MessageTwoTone, QuestionCircleTwoTone, BookTwoTone, PlaySquareTwoTone } from '@ant-design/icons';
-import OwncastLogo from "./components/logo"
-import LogTable from "./components/log-table";
+import OwncastLogo from './components/logo'
+import LogTable from './components/log-table';
 import Link from 'next/link';
 
 const { Meta } = Card;

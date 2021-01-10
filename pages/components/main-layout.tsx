@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Head from 'next/head'
-import { differenceInSeconds } from "date-fns";
+import { differenceInSeconds } from 'date-fns';
 import { useRouter } from 'next/router';
 import { Layout, Menu, Popover } from 'antd';
 
@@ -17,7 +17,7 @@ import {
   MessageOutlined
 } from '@ant-design/icons';
 import classNames from 'classnames';
-import { upgradeVersionAvailable } from "../../utils/apis";
+import { upgradeVersionAvailable } from '../../utils/apis';
 import { parseSecondsToDurationString } from '../../utils/format'
 
 import OwncastLogo from './logo';
@@ -80,7 +80,7 @@ export default function MainLayout(props) {
         <title>Owncast Admin</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png"/>
       </Head>
-      
+
       <Sider
         width={240}
         className={adminStyles.sideNav}
@@ -116,7 +116,7 @@ export default function MainLayout(props) {
           >
             <Link href="/chat">Chat</Link>
           </Menu.Item>
-          
+
           <SubMenu
             key="configuration"
             title="Configuration"

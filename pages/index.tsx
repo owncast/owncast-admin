@@ -7,13 +7,13 @@ Will display an overview with the following datasources:
 TODO: Link each overview value to the sub-page that focuses on it.
 */
 
-import React, { useState, useEffect, useContext } from "react";
-import { Skeleton, Card, Statistic } from "antd";
-import { UserOutlined, ClockCircleOutlined } from "@ant-design/icons";
-import { formatDistanceToNow, formatRelative } from "date-fns";
-import { ServerStatusContext } from "../utils/server-status-context";
-import StatisticItem from "./components/statistic"
-import LogTable from "./components/log-table";
+import { useState, useEffect, useContext } from 'react';
+import { Skeleton, Card, Statistic } from 'antd';
+import { UserOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { formatDistanceToNow, formatRelative } from 'date-fns';
+import { ServerStatusContext } from '../utils/server-status-context';
+import StatisticItem from './components/statistic'
+import LogTable from './components/log-table';
 import Offline from './offline-notice';
 
 import {
@@ -21,7 +21,7 @@ import {
   fetchData,
   FETCH_INTERVAL,
 } from "../utils/apis";
-import { formatIPAddress, isEmptyObject } from "../utils/format";
+import { formatIPAddress, isEmptyObject } from '../utils/format';
 
 function streamDetailsFormatter(streamDetails) {
   return (
@@ -77,7 +77,7 @@ export default function Home() {
   if (!broadcaster) {
     return <Offline logs={logsData} />;
   }
-  
+
   // map out settings
   const videoQualitySettings = configData?.videoSettings?.videoQualityVariants?.map((setting, index) => {
     const { audioPassthrough, videoPassthrough, audioBitrate, videoBitrate, framerate } = setting;
@@ -89,7 +89,7 @@ export default function Home() {
     const videoSetting = videoPassthrough
         ? `${streamDetails.videoBitrate || 'Unknown'} kbps, ${streamDetails.framerate} fps ${streamDetails.width} x ${streamDetails.height}`
         : `${videoBitrate || 'Unknown'} kbps, ${framerate} fps`;
-    
+
     let settingTitle = 'Outbound Stream Details';
     settingTitle = (videoQualitySettings?.length > 1) ?
       `${settingTitle} ${index + 1}` : settingTitle;
@@ -118,7 +118,7 @@ export default function Home() {
   const broadcastDate = new Date(broadcaster.time);
 
   return (
-    <div className="home-container">      
+    <div className="home-container">
       <div className="sections-container">
         <div className="section online-status-section">
           <Card title="Stream is online" type="inner">

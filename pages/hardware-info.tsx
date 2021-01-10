@@ -1,9 +1,9 @@
-import { BulbOutlined, LaptopOutlined, SaveOutlined } from "@ant-design/icons";
-import { Row } from "antd";
-import React, { useEffect, useState } from 'react';
+import { BulbOutlined, LaptopOutlined, SaveOutlined } from '@ant-design/icons';
+import { Row } from 'antd';
+import { useEffect, useState } from 'react';
 import { fetchData, FETCH_INTERVAL, HARDWARE_STATS } from '../utils/apis';
 import Chart from './components/chart';
-import StatisticItem from "./components/statistic";
+import StatisticItem from './components/statistic';
 
 interface TimedValue {
   time: Date,
@@ -27,20 +27,20 @@ export default function HardwareInfo() {
       setHardwareStatus({ ...hardwareStatus, message: error.message });
     }
   };
-  
+
   useEffect(() => {
     let getStatusIntervalId = null;
 
     getHardwareStatus();
     getStatusIntervalId = setInterval(getHardwareStatus, FETCH_INTERVAL); // runs every 1 min.
-  
-    // returned function will be called on component unmount 
+
+    // returned function will be called on component unmount
     return () => {
       clearInterval(getStatusIntervalId);
     }
   }, []);
 
- 
+
   if (!hardwareStatus.cpu) {
     return null;
   }
@@ -50,7 +50,7 @@ export default function HardwareInfo() {
     hardwareStatus.memory[hardwareStatus.memory.length - 1]?.value;
   const currentDiskUsage =
     hardwareStatus.disk[hardwareStatus.disk.length - 1]?.value;
-  
+
 const series = [
   {
     name: "CPU",
@@ -68,7 +68,7 @@ const series = [
     data: hardwareStatus.disk,
   },
 ];
-  
+
     return (
       <div>
         <div>

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { Table, Typography, Tooltip, Button } from "antd";
-import { CheckCircleFilled, ExclamationCircleFilled, StopOutlined } from "@ant-design/icons";
+import { useState, useEffect } from 'react';
+import { Table, Typography, Tooltip, Button } from 'antd';
+import { CheckCircleFilled, ExclamationCircleFilled, StopOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
 import { ColumnsType } from 'antd/es/table';
 import format from 'date-fns/format'
 
-import { CHAT_HISTORY, fetchData, FETCH_INTERVAL, UPDATE_CHAT_MESSGAE_VIZ } from "../utils/apis";
+import { CHAT_HISTORY, fetchData, FETCH_INTERVAL, UPDATE_CHAT_MESSGAE_VIZ } from '../utils/apis';
 import { MessageType } from '../types/chat';
-import { isEmptyObject } from "../utils/format";
+import { isEmptyObject } from '../utils/format';
 
 const { Title } = Typography;
 
@@ -72,7 +72,7 @@ export default function Chat() {
   }, []);
 
   const nameFilters = createUserNameFilters(messages);
-  
+
   const rowSelection = {
     selectedRowKeys,
     onChange: (selectedKeys: string[]) => {
@@ -149,7 +149,7 @@ export default function Chat() {
       filters: nameFilters,
       onFilter: (value, record) => record.author === value,
       sorter: (a, b) => a.author.localeCompare(b.author),
-      sortDirections: ['ascend', 'descend'],  
+      sortDirections: ['ascend', 'descend'],
       ellipsis: true,
       render: author => (
         <Tooltip placement="topLeft" title={author}>
@@ -188,7 +188,7 @@ export default function Chat() {
     'bulk-editor': true,
     active: selectedRowKeys.length,
   });
-  
+
   return (
     <div className="chat-messages">
       <Title level={2}>Chat Messages</Title>
@@ -224,7 +224,7 @@ export default function Chat() {
       <Table
         size="small"
         className="messages-table"
-        pagination={{ pageSize: 100 }} 
+        pagination={{ pageSize: 100 }}
         scroll={{ y: 540 }}
         rowClassName={record => !record.visible ? 'hidden' : ''}
         dataSource={messages}
@@ -234,5 +234,3 @@ export default function Chat() {
       />
   </div>)
 }
-
-

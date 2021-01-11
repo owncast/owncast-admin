@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import KeyValueTable from './components/key-value-table';
-import { ServerStatusContext } from '../utils/server-status-context';
 import { Typography } from 'antd';
 import Link from 'next/link';
+import KeyValueTable from './components/key-value-table';
+import { ServerStatusContext } from '../utils/server-status-context';
 
 const { Title } = Typography;
 
@@ -31,27 +31,27 @@ function Storage({ config }) {
 
   const data = [
     {
-      name: "Enabled",
+      name: 'Enabled',
       value: config.s3.enabled.toString(),
     },
     {
-      name: "Endpoint",
+      name: 'Endpoint',
       value: config.s3.endpoint,
     },
     {
-      name: "Access Key",
+      name: 'Access Key',
       value: config.s3.accessKey,
     },
     {
-      name: "Secret",
+      name: 'Secret',
       value: config.s3.secret,
     },
     {
-      name: "Bucket",
+      name: 'Bucket',
       value: config.s3.bucket,
     },
     {
-      name: "Region",
+      name: 'Region',
       value: config.s3.region,
     },
   ];

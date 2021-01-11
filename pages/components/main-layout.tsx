@@ -39,15 +39,15 @@ export default function MainLayout(props) {
   const { Header, Footer, Content, Sider } = Layout;
   const { SubMenu } = Menu;
 
-  const streamDurationString = online ? parseSecondsToDurationString(differenceInSeconds(new Date(), new Date(broadcaster.time))) : "";
+  const streamDurationString = online ? parseSecondsToDurationString(differenceInSeconds(new Date(), new Date(broadcaster.time))) : '';
 
   const content = (
     <div>
-     <img src="/thumbnail.jpg" width="200px" />
+     <img src="/thumbnail.jpg" alt="thumbnail" width="200px" />
     </div>
   );
   const statusIcon = online ? <PlayCircleFilled /> : <MinusSquareFilled />;
-  const statusMessage = online ? `Online ${streamDurationString}` : "Offline";
+  const statusMessage = online ? `Online ${streamDurationString}` : 'Offline';
 
   const [upgradeVersion, setUpgradeVersion] = useState(null);
   const checkForUpgrade = async () => {
@@ -55,7 +55,7 @@ export default function MainLayout(props) {
       const result = await upgradeVersionAvailable(versionNumber);
       setUpgradeVersion(result);
     } catch (error) {
-      console.log("==== error", error);
+      console.log('==== error', error);
     }
   };
 
@@ -67,7 +67,7 @@ export default function MainLayout(props) {
   });
 
   const appClass = classNames({
-    "owncast-layout": true,
+    'owncast-layout': true,
     [adminStyles.online]: online,
   });
 
@@ -87,8 +87,8 @@ export default function MainLayout(props) {
       >
         <Menu
           theme="dark"
-          defaultSelectedKeys={[route.substring(1) || "home"]}
-          defaultOpenKeys={["current-stream-menu", "utilities-menu", "configuration"]}
+          defaultSelectedKeys={[route.substring(1) || 'home']}
+          defaultOpenKeys={['current-stream-menu', 'utilities-menu', 'configuration']}
           mode="inline"
         >
           <h1 className={adminStyles.owncastTitleContainer}>
@@ -146,7 +146,7 @@ export default function MainLayout(props) {
             </Menu.Item>
             <Menu.Item key="upgrade" style={{ display: upgradeMenuItemStyle }}>
               <Link href="/upgrade">
-                <a>Upgrade to v{upgradeVersionString}</a>
+                {`Upgrade to v${upgradeVersionString}`}
               </Link>
             </Menu.Item>
           </SubMenu>
@@ -171,7 +171,7 @@ export default function MainLayout(props) {
         </Header>
         <Content className={adminStyles.contentMain}>{children}</Content>
 
-        <Footer style={{ textAlign: "center" }}>
+        <Footer style={{ textAlign: 'center' }}>
           <a href="https://owncast.online/">About Owncast v{versionNumber}</a>
         </Footer>
       </Layout>

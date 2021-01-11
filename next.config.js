@@ -1,4 +1,4 @@
 module.exports = {
-  basePath: "/admin",
+  basePath: '/admin',
   trailingSlash: true,
 };

@@ -8,10 +8,10 @@ const { Title } = Typography;
 function renderColumnLevel(text, entry) {
   let color = 'black';
 
-  if (entry.level === "warning") {
-    color = "orange";
+  if (entry.level === 'warning') {
+    color = 'orange';
   } else if (entry.level === 'error') {
-    color = "red";
+    color = 'red';
   }
 
   return <Tag color={color}>{text}</Tag>;
@@ -34,42 +34,42 @@ export default function LogTable({ logs, pageSize }: Props) {
   }
   const columns = [
     {
-      title: "Level",
-      dataIndex: "level",
-      key: "level",
+      title: 'Level',
+      dataIndex: 'level',
+      key: 'level',
       filters: [
         {
-          text: "Info",
-          value: "info",
+          text: 'Info',
+          value: 'info',
         },
         {
-          text: "Warning",
-          value: "warning",
+          text: 'Warning',
+          value: 'warning',
         },
         {
-          text: "Error",
-          value: "Error",
+          text: 'Error',
+          value: 'Error',
         },
       ],
       onFilter: (level, row) => row.level.indexOf(level) === 0,
       render: renderColumnLevel,
     },
     {
-      title: "Timestamp",
-      dataIndex: "time",
-      key: "time",
+      title: 'Timestamp',
+      dataIndex: 'time',
+      key: 'time',
       render: (timestamp) => {
         const dateObject = new Date(timestamp);
         return format(dateObject, 'p P');
       },
       sorter: (a, b) => new Date(a.time).getTime() - new Date(b.time).getTime(),
-      sortDirections: ["descend", "ascend"] as SortOrder[],
-      defaultSortOrder: "descend" as SortOrder,
+      sortDirections: ['descend', 'ascend'] as SortOrder[],
+      defaultSortOrder: 'descend' as SortOrder,
     },
     {
-      title: "Message",
-      dataIndex: "message",
-      key: "message",
+      title: 'Message',
+      dataIndex: 'message',
+      key: 'message',
       render: renderMessage,
     },
   ];

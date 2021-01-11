@@ -4,7 +4,7 @@ import LogTable from './components/log-table';
 import {
   LOGS_ALL,
   fetchData,
-} from "../utils/apis";
+} from '../utils/apis';
 
 const FETCH_INTERVAL = 5 * 1000; // 5 sec
 
@@ -16,7 +16,7 @@ export default function Logs() {
       const result = await fetchData(LOGS_ALL);
       setLogs(result);
     } catch (error) {
-      console.log("==== error", error);
+      console.log('==== error', error);
     }
   };
 

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start"
+    "start": "next start",
+    "lint": "tsc --noEmit && eslint -c .eslintrc.js './**/*.{js,ts,tsx}'"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",

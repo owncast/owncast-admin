@@ -12,63 +12,63 @@ function VideoVariants({ config }) {
 
   const videoQualityColumns = [
     {
-      title: "#",
-      dataIndex: "key",
-      key: "key"
+      title: '#',
+      dataIndex: 'key',
+      key: 'key'
     },
     {
-      title: "Video bitrate",
-      dataIndex: "videoBitrate",
-      key: "videoBitrate",
+      title: 'Video bitrate',
+      dataIndex: 'videoBitrate',
+      key: 'videoBitrate',
       render: (bitrate) =>
-        !bitrate ? "Same as source" : `${bitrate} kbps`,
+        !bitrate ? 'Same as source' : `${bitrate} kbps`,
     },
     {
-      title: "Framerate",
-      dataIndex: "framerate",
-      key: "framerate",
+      title: 'Framerate',
+      dataIndex: 'framerate',
+      key: 'framerate',
       render: (framerate) =>
-        !framerate ? "Same as source" : `${framerate} fps`,
+        !framerate ? 'Same as source' : `${framerate} fps`,
     },
     {
-      title: "Encoder preset",
-      dataIndex: "encoderPreset",
-      key: "framerate",
+      title: 'Encoder preset',
+      dataIndex: 'encoderPreset',
+      key: 'framerate',
       render: (preset) =>
-        !preset ? "n/a" : preset,
+        !preset ? 'n/a' : preset,
     },
     {
-      title: "Audio bitrate",
-      dataIndex: "audioBitrate",
-      key: "audioBitrate",
+      title: 'Audio bitrate',
+      dataIndex: 'audioBitrate',
+      key: 'audioBitrate',
       render: (bitrate) =>
-        !bitrate ? "Same as source" : `${bitrate} kbps`,
+        !bitrate ? 'Same as source' : `${bitrate} kbps`,
     },
   ];
 
   const miscVideoSettingsColumns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
+      title: 'Name',
+      dataIndex: 'name',
+      key: 'name',
     },
     {
-      title: "Value",
-      dataIndex: "value",
-      key: "value",
+      title: 'Value',
+      dataIndex: 'value',
+      key: 'value',
     },
   ];
 
   const miscVideoSettings = [
     {
-      name: "Segment length",
+      name: 'Segment length',
       value: config.videoSettings.segmentLengthSeconds,
-      key: "segmentLength"
+      key: 'segmentLength'
     },
     {
-      name: "Number of segments",
+      name: 'Number of segments',
       value: config.videoSettings.numberOfPlaylistItems,
-      key: "numberOfSegments"
+      key: 'numberOfSegments'
     },
   ];
 
@@ -100,7 +100,7 @@ function VideoVariants({ config }) {
   );
 }
 
-export default function VideoConfig() {  
+export default function VideoConfig() {
   const serverStatusData = useContext(ServerStatusContext);
   const { serverConfig: config } = serverStatusData || {};
 
@@ -108,6 +108,5 @@ export default function VideoConfig() {
     <div>
         <VideoVariants config={config} />
     </div>
-  ); 
+  );
 }
-

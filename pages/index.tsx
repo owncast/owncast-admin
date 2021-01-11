@@ -20,7 +20,7 @@ import {
   LOGS_WARN,
   fetchData,
   FETCH_INTERVAL,
-} from "../utils/apis";
+} from '../utils/apis';
 import { formatIPAddress, isEmptyObject } from '../utils/format';
 
 function streamDetailsFormatter(streamDetails) {
@@ -38,7 +38,7 @@ export default function Home() {
   const { broadcaster, serverConfig: configData } = serverStatusData || {};
   const { remoteAddr, streamDetails } = broadcaster || {};
 
-  const encoder = streamDetails?.encoder || "Unknown encoder";
+  const encoder = streamDetails?.encoder || 'Unknown encoder';
 
   const [logsData, setLogs] = useState([]);
   const getLogs = async () => {
@@ -46,7 +46,7 @@ export default function Home() {
       const result = await fetchData(LOGS_WARN);
       setLogs(result);
     } catch (error) {
-      console.log("==== error", error);
+      console.log('==== error', error);
     }
   };
   const getMoreStats = () => {
@@ -94,7 +94,7 @@ export default function Home() {
     settingTitle = (videoQualitySettings?.length > 1) ?
       `${settingTitle} ${index + 1}` : settingTitle;
     return (
-      <Card title={settingTitle} type="inner" key={`${settingTitle}${index}`}>
+      <Card title={settingTitle} type="inner" key={`${settingTitle}`}>
         <StatisticItem
           title="Outbound Video Stream"
           value={videoSetting}

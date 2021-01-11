@@ -41,7 +41,7 @@ export const CHAT_HISTORY = `${API_LOCATION}chat/messages`;
 export const UPDATE_CHAT_MESSGAE_VIZ = `${NEXT_PUBLIC_API_HOST}api/admin/chat/updatemessagevisibility`;
 
 
-const GITHUB_RELEASE_URL = "https://api.github.com/repos/owncast/owncast/releases/latest";
+const GITHUB_RELEASE_URL = 'https://api.github.com/repos/owncast/owncast/releases/latest';
 
 interface FetchOptions {
   data?: any;
@@ -129,10 +129,10 @@ function upToDate(local, remote) {
     if (VPAT.test(local) && VPAT.test(remote)) {
         const lparts = local.split('.');
         while(lparts.length < 3)
-            lparts.push("0");
+            lparts.push('0');
         const rparts = remote.split('.');
         while (rparts.length < 3)
-            rparts.push("0");
+            rparts.push('0');
         // eslint-disable-next-line no-plusplus
         for (let i=0; i<3; i++) {
             const l = parseInt(lparts[i], 10);
@@ -143,7 +143,7 @@ function upToDate(local, remote) {
             return l > r;
         }
         return true;
-    } 
+    }
         return local >= remote;
-    
+
 }

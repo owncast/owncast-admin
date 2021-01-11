@@ -12,7 +12,7 @@ import {
   CONNECTED_CLIENTS,
   VIEWERS_OVER_TIME,
   fetchData,
-} from "../utils/apis";
+} from '../utils/apis';
 
 const FETCH_INTERVAL = 60 * 1000; // 1 min
 
@@ -33,14 +33,14 @@ export default function ViewersOverTime() {
       const result = await fetchData(VIEWERS_OVER_TIME);
       setViewerInfo(result);
     } catch (error) {
-      console.log("==== error", error);
+      console.log('==== error', error);
     }
 
     try {
       const result = await fetchData(CONNECTED_CLIENTS);
       setClients(result);
     } catch (error) {
-      console.log("==== error", error);
+      console.log('==== error', error);
     }
   };
 
@@ -62,42 +62,42 @@ export default function ViewersOverTime() {
   // todo - check to see if broadcast active has changed. if so, start polling.
 
   if (!viewerInfo.length) {
-    return "no info";
+    return 'no info';
   }
 
   const columns = [
     {
-      title: "User name",
-      dataIndex: "username",
-      key: "username",
-      render: (username) => username || "-",
+      title: 'User name',
+      dataIndex: 'username',
+      key: 'username',
+      render: (username) => username || '-',
       sorter: (a, b) => a.username - b.username,
-      sortDirections: ["descend", "ascend"] as SortOrder[],
+      sortDirections: ['descend', 'ascend'] as SortOrder[],
     },
     {
-      title: "Messages sent",
-      dataIndex: "messageCount",
-      key: "messageCount",
+      title: 'Messages sent',
+      dataIndex: 'messageCount',
+      key: 'messageCount',
       sorter: (a, b) => a.messageCount - b.messageCount,
-      sortDirections: ["descend", "ascend"] as SortOrder[],
+      sortDirections: ['descend', 'ascend'] as SortOrder[],
     },
     {
-      title: "Connected Time",
-      dataIndex: "connectedAt",
-      key: "connectedAt",
+      title: 'Connected Time',
+      dataIndex: 'connectedAt',
+      key: 'connectedAt',
       render: (time) => formatDistanceToNow(new Date(time)),
       sorter: (a, b) => new Date(a.connectedAt).getTime() - new Date(b.connectedAt).getTime(),
-      sortDirections: ["descend", "ascend"] as SortOrder[],
+      sortDirections: ['descend', 'ascend'] as SortOrder[],
     },
     {
-      title: "User Agent",
-      dataIndex: "userAgent",
-      key: "userAgent",
+      title: 'User Agent',
+      dataIndex: 'userAgent',
+      key: 'userAgent',
     },
     {
-      title: "Location",
-      dataIndex: "geo",
-      key: "geo",
+      title: 'Location',
+      dataIndex: 'geo',
+      key: 'geo',
       render: (geo) => geo ? `${geo.regionName}, ${geo.countryCode}` : '-',
     },
   ];

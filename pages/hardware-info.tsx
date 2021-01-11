@@ -15,7 +15,7 @@ export default function HardwareInfo() {
     cpu: Array<TimedValue>(),
     memory: Array<TimedValue>(),
     disk: Array<TimedValue>(),
-    message: "",
+    message: '',
   });
 
   const getHardwareStatus = async () => {
@@ -53,18 +53,18 @@ export default function HardwareInfo() {
 
 const series = [
   {
-    name: "CPU",
-    color: "#B63FFF",
+    name: 'CPU',
+    color: '#B63FFF',
     data: hardwareStatus.cpu,
   },
   {
-    name: "Memory",
-    color: "#2087E2",
+    name: 'Memory',
+    color: '#2087E2',
     data: hardwareStatus.memory,
   },
   {
-    name: "Disk",
-    color: "#FF7700",
+    name: 'Disk',
+    color: '#FF7700',
     data: hardwareStatus.disk,
   },
 ];

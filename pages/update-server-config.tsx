@@ -15,14 +15,14 @@ function SocialHandles({ config }) {
 
   const columns = [
     {
-      title: "Platform",
-      dataIndex: "platform",
-      key: "platform",
+      title: 'Platform',
+      dataIndex: 'platform',
+      key: 'platform',
     },
     {
-      title: "URL",
-      dataIndex: "url",
-      key: "url",
+      title: 'URL',
+      dataIndex: 'url',
+      key: 'url',
       render: (url) => <a href={url}>{url}</a>
     },
   ];
@@ -53,46 +53,46 @@ function InstanceDetails({ config }) {
 
   const data = [
     {
-      name: "Server name",
+      name: 'Server name',
       value: instanceDetails.name,
     },
     {
-      name: "Title",
+      name: 'Title',
       value: instanceDetails.title,
     },
     {
-      name: "Summary",
+      name: 'Summary',
       value: instanceDetails.summary,
     },
     {
-      name: "Logo",
+      name: 'Logo',
       value: instanceDetails.logo,
     },
     {
-      name: "Tags",
-      value: instanceDetails.tags?.join(", "),
+      name: 'Tags',
+      value: instanceDetails.tags?.join(', '),
     },
     {
-      name: "NSFW",
+      name: 'NSFW',
       value: instanceDetails.nsfw?.toString(),
     },
     {
-      name: "Shows in Owncast directory",
+      name: 'Shows in Owncast directory',
       value: yp.enabled.toString(),
     },
   ];
 
   const configData = [
     {
-      name: "Stream key",
+      name: 'Stream key',
       value: streamKey,
     },
     {
-      name: "ffmpeg path",
+      name: 'ffmpeg path',
       value: ffmpegPath,
     },
     {
-      name: "Web server port",
+      name: 'Web server port',
       value: webServerPort,
     },
   ];

@@ -54,7 +54,7 @@ export default function Chat() {
         setMessages(result);
       }
     } catch (error) {
-      console.log("==== error", error);
+      console.log('==== error', error);
     }
   };
 
@@ -98,7 +98,7 @@ export default function Chat() {
       },
     });
 
-    if (result.success && result.message === "changed") {
+    if (result.success && result.message === 'changed') {
       setBulkOutcome(<CheckCircleFilled />);
       resetBulkOutcome();
 

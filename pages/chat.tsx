@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Table, Typography, Tooltip, Button } from "antd";
-import { CheckCircleFilled, ExclamationCircleFilled } from "@ant-design/icons";
+import { useState, useEffect } from 'react';
+import { Table, Typography, Tooltip, Button } from 'antd';
+import { CheckCircleFilled, ExclamationCircleFilled } from '@ant-design/icons';
 import classNames from 'classnames';
 import { ColumnsType } from 'antd/es/table';
 import format from 'date-fns/format'
 
 import { CHAT_HISTORY, fetchData, FETCH_INTERVAL, UPDATE_CHAT_MESSGAE_VIZ } from '../utils/apis';
 import { MessageType } from '../types/chat';
-import { isEmptyObject } from "../utils/format";
-import MessageVisiblityToggle from "./components/message-visiblity-toggle";
+import { isEmptyObject } from '../utils/format';
+import MessageVisiblityToggle from './components/message-visiblity-toggle';
 
 const { Title } = Typography;
 

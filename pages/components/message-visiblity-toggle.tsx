@@ -1,11 +1,11 @@
 // Custom component for AntDesign Button that makes an api call, then displays a confirmation icon upon 
-import React, { useState, useEffect } from "react";
-import { Button, Tooltip } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined, CheckCircleFilled, ExclamationCircleFilled } from "@ant-design/icons";
-import { fetchData, UPDATE_CHAT_MESSGAE_VIZ } from "../../utils/apis";
+import { useState, useEffect } from 'react';
+import { Button, Tooltip } from 'antd';
+import { EyeOutlined, EyeInvisibleOutlined, CheckCircleFilled, ExclamationCircleFilled } from '@ant-design/icons';
+import { fetchData, UPDATE_CHAT_MESSGAE_VIZ } from '../../utils/apis';
 import { MessageType } from '../../types/chat';
-import { OUTCOME_TIMEOUT } from "../chat";
-import { isEmptyObject } from "../../utils/format";
+import { OUTCOME_TIMEOUT } from '../chat';
+import { isEmptyObject } from '../../utils/format';
 
 interface MessageToggleProps {
   isVisible: boolean;
@@ -47,7 +47,7 @@ export default function MessageVisiblityToggle({ isVisible, message, setMessage 
       },
     });
 
-    if (result.success && result.message === "changed") {
+    if (result.success && result.message === 'changed') {
       setMessage({ ...message, visible: !isVisible });
       setOutcome(1);
     } else {

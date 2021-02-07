@@ -14,6 +14,7 @@ import '../styles/config-socialhandles.scss';
 import '../styles/config-storage.scss';
 import '../styles/config-tags.scss';
 import '../styles/config-video-variants.scss';
+import '../styles/config-public-details.scss';
 
 import '../styles/home.scss';
 import '../styles/chat.scss';

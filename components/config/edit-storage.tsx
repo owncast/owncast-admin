@@ -135,6 +135,7 @@ export default function EditStorage() {
 
   const containerClass = classNames({
     'edit-storage-container': true,
+    'form-module': true,
     enabled: shouldDisplayForm,
   });
 

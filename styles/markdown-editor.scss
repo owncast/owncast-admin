@@ -5,6 +5,10 @@
   display: block !important;
 }
 .rc-md-editor {
+  border-color: black;
+  .rc-md-navigation {
+    background-color: black;
+  }
   // Set the background color of the preview container
   .editor-container {
     background-color: #E2E8F0;

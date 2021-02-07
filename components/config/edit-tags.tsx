@@ -100,8 +100,12 @@ export default function EditInstanceTags() {
 
   return (
     <div className="tag-editor-container">
-      <Title level={3}>Add Tags</Title>
-      <p>This is a great way to categorize your Owncast server on the Directory!</p>
+      <Title level={3} className="section-title">
+        Add Tags
+      </Title>
+      <p className="description">
+        This is a great way to categorize your Owncast server on the Directory!
+      </p>
 
       <div className="tag-current-tags">
         {tags.map((tag, index) => {
@@ -109,7 +113,7 @@ export default function EditInstanceTags() {
             handleDeleteTag(index);
           };
           return (
-            <Tag closable onClose={handleClose} key={`tag-${tag}-${index}`}>
+            <Tag closable onClose={handleClose} color="#5a67d8" key={`tag-${tag}-${index}`}>
               {tag}
             </Tag>
           );

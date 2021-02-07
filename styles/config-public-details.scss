@@ -1,0 +1,51 @@
+// dealiing with some general layout on the public details page
+
+.config-public-details-page {
+  width: 100%;
+  .top-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    @media (max-width: 1200px) {
+      flex-wrap: wrap;
+      .social-items-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+  }
+  .instance-details-container {
+    .textfield-container {
+      .input-side {
+        max-width: none;
+      }
+      max-width: none;
+    }
+  }
+  .social-items-container{
+    // display: flex;
+    // flex-direction: rocw;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    margin-left: 1em;
+    max-width: 450px;
+    .form-module {
+      background-color: rgba(0,0,0,.25);
+      // padding: 0;
+      // margin: .5em;
+      // width: 30%;
+    }
+  }
+  .instance-details-container,
+  .page-content-module {
+    margin: 1em 0;
+  }
+
+  .field-summary {
+    textarea {
+      height: 6em !important;
+    }
+  }
+}

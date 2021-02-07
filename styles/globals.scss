@@ -45,15 +45,10 @@ code {
   height: 2rem;
   width: 2rem;
 }
-.ant-btn {
-  transition-duration: .15s;
-  transition-delay: 0s;
-}
 
-p.page-description {
+p.description {
   margin: 1em 0;
   color: #ccc; 
-  width: 80%;
 }
 
 
@@ -61,15 +56,23 @@ p.page-description {
   margin: 2em auto;
 }
 
-h2.page-title {
+h2.page-title,
+h3.page-title
+ {
   font-weight: 400;
   font-size: 1.5em;
 }
-h2.section-title {
+h2.section-title,
+h3.section-title {
   font-weight: 400;
   font-size: 1.25em;
 }
-.form-section {
+
+.form-module {
+  // width: 100%;
+  // max-width: 500px;
+  // min-width: 300px;
+  margin: 1em 0;
   background-color: var(--container-bg-color);
   padding: 2em;
   border-radius: var(--container-border-radius);

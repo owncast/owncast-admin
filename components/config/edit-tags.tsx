@@ -3,7 +3,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Typography, Tag } from 'antd';
 
 import { ServerStatusContext } from '../../utils/server-status-context';
-import { FIELD_PROPS_TAGS, RESET_TIMEOUT, postConfigUpdateToAPI } from '../../utils/config-constants';
+import {
+  FIELD_PROPS_TAGS,
+  RESET_TIMEOUT,
+  postConfigUpdateToAPI,
+} from '../../utils/config-constants';
 import TextField from './form-textfield';
 import { UpdateArgs } from '../../types/config-section';
 import {

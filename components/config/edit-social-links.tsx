@@ -43,9 +43,9 @@ export default function EditSocialLinks() {
   let resetTimer = null;
 
   const PLACEHOLDERS = {
-    'mastodon': 'https://mastodon.social/@username',
-    'twitter': 'https://twitter.com/username'
-  }
+    mastodon: 'https://mastodon.social/@username',
+    twitter: 'https://twitter.com/username',
+  };
 
   const getAvailableIcons = async () => {
     try {

@@ -12,8 +12,8 @@ import { Skeleton, Card, Statistic } from "antd";
 import { UserOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import { formatDistanceToNow, formatRelative } from "date-fns";
 import { ServerStatusContext } from "../utils/server-status-context";
-import StatisticItem from "./components/statistic"
-import LogTable from "./components/log-table";
+import StatisticItem from "../components/statistic"
+import LogTable from "../components/log-table";
 import Offline from './offline-notice';
 
 import {

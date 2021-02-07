@@ -8,7 +8,7 @@ import format from 'date-fns/format'
 import { CHAT_HISTORY, fetchData, FETCH_INTERVAL, UPDATE_CHAT_MESSGAE_VIZ } from "../utils/apis";
 import { MessageType } from '../types/chat';
 import { isEmptyObject } from "../utils/format";
-import MessageVisiblityToggle from "./components/message-visiblity-toggle";
+import MessageVisiblityToggle from "../components/message-visiblity-toggle";
 
 const { Title } = Typography;
 

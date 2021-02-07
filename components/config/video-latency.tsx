@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Typography, Slider } from 'antd';
-import { ServerStatusContext } from '../../../utils/server-status-context';
-import { AlertMessageContext } from '../../../utils/alert-message-context';
-import { API_VIDEO_SEGMENTS, RESET_TIMEOUT, postConfigUpdateToAPI } from './constants';
+import { ServerStatusContext } from '../../utils/server-status-context';
+import { AlertMessageContext } from '../../utils/alert-message-context';
+import { API_VIDEO_SEGMENTS, RESET_TIMEOUT, postConfigUpdateToAPI } from '../../utils/config-constants';
 import {
   createInputStatus,
   StatusState,
   STATUS_ERROR,
   STATUS_PROCESSING,
   STATUS_SUCCESS,
-} from '../../../utils/input-statuses';
+} from '../../utils/input-statuses';
 import FormStatusIndicator from './form-status-indicator';
 
 const { Title } = Typography;

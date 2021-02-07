@@ -123,10 +123,10 @@ export default function MainLayout(props) {
 
       <Sider width={240} className="side-nav">
         <Menu
-          theme="dark"
           defaultSelectedKeys={[route.substring(1) || 'home']}
           defaultOpenKeys={['current-stream-menu', 'utilities-menu', 'configuration']}
           mode="inline"
+          className="menu-container"
         >
           <h1 className="owncast-title">
             <span className="logo-container">

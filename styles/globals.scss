@@ -1,4 +1,4 @@
-@import "~antd/dist/antd.dark";
+// @import "~antd/dist/antd.dark";
 
 html,
 body {
@@ -6,15 +6,20 @@ body {
   margin: 0;
   font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 
-  font-size: 16px;
+  font-size: 14px;
 
-  background-color: #1f1f21;
+  background-color: #000;
+  color: var(--default-text-color);;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  color: rgba(90,103,216,1);
+  color: var(--owncast-purple);
+
+  &:hover {
+    color: var(--default-text-color);
+  }
 }
 
 * {
@@ -45,4 +50,23 @@ p.page-description {
   margin: 1em 0;
   color: #ccc; 
   width: 80%;
+}
+
+
+.line-chart-container {
+  margin: 2em auto;
+}
+
+h2.page-title {
+  font-weight: 400;
+  font-size: 1.5em;
+}
+h2.section-title {
+  font-weight: 400;
+  font-size: 1.25em;
+}
+.form-section {
+  background-color: var(--container-bg-color);
+  padding: 2em;
+  border-radius: var(--container-border-radius);
 }

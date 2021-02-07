@@ -1,29 +1,141 @@
 // GENERAL ANT OVERRIDES
+
+
+// RESET BG COLORS
 .ant-layout,
+.ant-layout-header,
+.ant-layout-sider,
 .ant-layout-footer,
+.ant-card,
 .ant-menu,
-.ant-menu.ant-menu-dark {
+.ant-menu-submenu > .ant-menu,
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
   background-color: transparent;
 }
-.owncast-layout .ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: var(--owncast-purple);
+
+
+h1.ant-typography, 
+h2.ant-typography, 
+h3.ant-typography, 
+h4.ant-typography, 
+h5.ant-typography, 
+.ant-typography,
+.ant-typography h1,
+.ant-typography h2,
+.ant-typography h3,
+.ant-typography h4,
+.ant-typography h5 {
+  color: var(--default-text-color);
+  font-weight: 500;
 }
 
-// LAYOUT
-.ant-layout-header,
-.ant-layout-sider {
-  background-color: #07050d;
+
+
+
+// ANT MENU
+// menu base
+.ant-menu-item {
+  transition-duration: var(--ant-transition-duration);
+
+  .anticon {
+    transition-duration: var(--ant-transition-duration);
+    color: var(--nav-text); 
+  }
+
+  a {
+    transition-duration: var(--ant-transition-duration);
+    color: var(--nav-text);
+
+    &:hover {
+      color: white;
+    }
+  }
+  &:hover {
+    background-color: rgba(0,0,0,.15);
+
+    .anticon {
+      color: white;
+    }
+  }
 }
 
-// MENU
-.ant-menu-dark .ant-menu-inline.ant-menu-sub {
-  // background-color: rgba(255,255,255,.05);
-  background-color: #140028;
+// menu item selected
+.ant-menu-item-selected,
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: black;
+  a {
+    color: var(--nav-selected-text);
+  }
+  .anticon {
+    color: var(--nav-selected-text);
+  }
+
+  // the right border color
+  &:after {
+    border-color: var(--nav-selected-text);
+    transition-duration: var(--ant-transition-duration);
+  }
 }
 
-// CARD
+// submenu items
+.ant-menu-submenu {
+  &> .ant-menu {
+    border-left: 1px solid rgba(255,255,255,.4);
+    background-color: rgba(0,0,0,.15);
+  }
+  .ant-menu-submenu-title {
+    transition-duration: var(--ant-transition-duration);
+    color: var(--nav-text);
+    
+    .anticon {
+      color: var(--nav-text);
+    }
+    .ant-menu-submenu-arrow {
+      &:before,
+      &:after {
+        transition-duration: var(--ant-transition-duration);
+        background-image: linear-gradient(to right, var(--nav-text), var(--nav-text));
+      }
+    }
+  }
+  &:hover {
+    .ant-menu-submenu-title {
+      color: white;
+      .anticon {
+        color: white;
+      }
+      .ant-menu-submenu-arrow {
+        &:before,
+        &:after {
+          background-image: linear-gradient(to right, white, white);
+        }
+      }
+    }
+  }
+}
+
+
+// ANT RESULT
+.ant-result-title {
+  color: var(--default-text-color);
+}
+.ant-result-subtitle {
+  color: var(--default-text-color);
+}
+
+
+// ANT CARD
 .ant-card {
-  border-radius: .5em;
+  border-radius: var(--container-border-radius);
+  background-color: var(--container-bg-color);
+  color: #fff;
+}
+.ant-card-bordered {
+  border-color: #000;
+}
+.ant-card-meta-title,
+.ant-card-meta-description {
+  color: white;
 }
 
 // INPUT
@@ -39,9 +151,10 @@
   }
 }
 
-// BUTTON
-.ant-btn-primary:hover, .ant-btn-primary:focus {
-  background-color: white;
+// ANT BUTTON
+.ant-btn-primary:hover, 
+.ant-btn-primary:focus {
+  background-color: var(--default-text-color);
   color: #40a9ff;
 }
 .ant-btn.ant-btn-primary:focus {
@@ -54,7 +167,7 @@
   transition-duration: 0.15s;
 }
 
-// TABLE 
+// ANT TABLE 
 .ant-table-thead > tr > th,
 .ant-table-small .ant-table-thead > tr > th {
   background-color: #000;

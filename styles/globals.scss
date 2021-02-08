@@ -82,7 +82,7 @@ h3.section-title {
 .row {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
 
   @media (max-width: 980px) {

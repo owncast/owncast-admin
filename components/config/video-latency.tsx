@@ -46,9 +46,6 @@ function SegmentToolTip({ value }: SegmentToolTipProps) {
 
 export default function VideoLatency() {
   const [submitStatus, setSubmitStatus] = useState<StatusState>(null);
-
-  // const [submitStatus, setSubmitStatus] = useState(null);
-  // const [submitStatusMessage, setSubmitStatusMessage] = useState('');
   const [selectedOption, setSelectedOption] = useState(null);
 
   const serverStatusData = useContext(ServerStatusContext);
@@ -68,7 +65,6 @@ export default function VideoLatency() {
 
   const resetStates = () => {
     setSubmitStatus(null);
-    // setSubmitStatusMessage('');
     resetTimer = null;
     clearTimeout(resetTimer);
   };
@@ -88,8 +84,6 @@ export default function VideoLatency() {
         });
         setSubmitStatus(createInputStatus(STATUS_SUCCESS, 'Latency buffer level updated.'));
 
-        // setSubmitStatus('success');
-        // setSubmitStatusMessage('Variants updated.');
         resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
         if (serverStatusData.online) {
           setMessage(
@@ -100,8 +94,6 @@ export default function VideoLatency() {
       onError: (message: string) => {
         setSubmitStatus(createInputStatus(STATUS_ERROR, message));
 
-        // setSubmitStatus('error');
-        // setSubmitStatusMessage(message);
         resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
       },
     });
@@ -134,8 +126,8 @@ export default function VideoLatency() {
           defaultValue={selectedOption}
           value={selectedOption}
         />
+        <FormStatusIndicator status={submitStatus} />
       </div>
-      <FormStatusIndicator status={submitStatus} />
     </div>
   );
 }

@@ -16,6 +16,15 @@
 
 // modal content
 .config-variant-form {
+  .description {
+    margin-top: 0;
+  }
+
+
+  .advanced-settings {
+    width: 48%;
+    margin-left: 2em;
+  }
   .blurb {
     margin: 1em;
     opacity: .75;
@@ -27,9 +36,8 @@
     opacity: .5;
     font-style: italic;
   }
-  .section-intro {
-    margin-bottom: 2em;
-  }
+
+
   // .field {
   //   margin-bottom: 2em;
   //   display: flex;

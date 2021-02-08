@@ -220,6 +220,7 @@ textarea.ant-input {
 .ant-btn-primary[disabled] {
   background-color: rgba(255,255,255,.2);
   border-color: rgba(255,255,255,.2);
+  color: white;
 
   &:hover {
     background-color: rgba(255,255,255,.2);
@@ -253,7 +254,21 @@ textarea.ant-input {
 .ant-table-tbody > tr:nth-child(odd) > td {
   background-color: var(--textfield-bg);
 }
-
+.ant-empty {
+  color: white;
+  opacity: .75;
+}
+.ant-table-empty .ant-table-tbody > tr.ant-table-placeholder {
+  &:hover > td {
+    background-color: transparent;
+  }
+}
+.ant-table-thead th.ant-table-column-has-sorters:hover {
+  background-color: var(--textfield-border);
+  .ant-table-filter-trigger-container {
+    background-color: var(--textfield-border);
+  }
+}
 
 
 // MODAL
@@ -292,9 +307,9 @@ textarea.ant-input {
 
 
 // SLIDER
-.ant-slider-with-marks {
-  margin-right: 2em;
-}
+// .ant-slider-with-marks {
+//   margin-right: 2em;
+// }
 .ant-slider-mark-text {
   font-size: .85em;
   white-space: nowrap;

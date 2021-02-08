@@ -50,8 +50,27 @@ Ideal for wrapping each Textfield on a page with many text fields in a row. This
   width: 90%;
   margin: auto;
   padding: 1em 2em .75em;
-  background-color: black;
+  background-color: var(--textfield-border);
   border-radius: 1em;
+  .ant-slider-rail {
+    background-color: black;
+  }
+  .ant-slider-track {
+    background-color: var(--nav-text);
+  }
+  .ant-slider-mark-text,
+  .ant-slider-mark-text-active {
+    color: white;
+    opacity: .5;
+  }
+  .ant-slider-mark-text-active {
+    opacity: 1;
+  }
+  .status-container {
+    width: 100%;
+    margin: .5em auto;
+    text-align: center;
+  }
 }
 
 

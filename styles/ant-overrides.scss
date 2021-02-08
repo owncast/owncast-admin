@@ -274,6 +274,7 @@ textarea.ant-input {
 // MODAL
 .ant-modal-content {
   border-radius: var(--container-border-radius);
+  border: 1px solid var(--owncast-purple-highlight);
 }
 .ant-modal-header {
   border-radius: var(--container-border-radius) var(--container-border-radius) 0 0;
@@ -362,3 +363,4 @@ textarea.ant-input {
 .ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow {
   border-color: black;
 }
+

@@ -6,7 +6,7 @@ import TextField from './form-textfield';
 import { DEFAULT_VARIANT_STATE } from '../../utils/config-constants';
 import InfoTip from '../info-tip';
 import CPUUsageSelector from './cpu-usage';
-import ToggleSwitch from './form-toggleswitch-with-submit';
+// import ToggleSwitch from './form-toggleswitch-with-submit';
 
 const { Panel } = Collapse;
 
@@ -129,29 +129,30 @@ export default function VideoVariantForm({
           </div>
 
           {/* VIDEO PASSTHROUGH FIELD */}
-          <div style={{ xdisplay: 'none' }} className="form-module">
+          <div style={{ display: 'none' }} className="form-module">
             <p className="label">
               <InfoTip tip={VIDEO_VARIANT_DEFAULTS.videoPassthrough.tip} />
               Use Video Passthrough?
             </p>
             <div className="form-component">
-              <ToggleSwitch
-                // defaultChecked={dataState.videoPassthrough}
+              {/* todo: change to ToggleSwitch for layout */}
+              <Switch
+                defaultChecked={dataState.videoPassthrough}
                 checked={dataState.videoPassthrough}
                 onChange={handleVideoPassChange}
-                label="Use Video Passthrough"
-                // checkedChildren="Yes"
-                // unCheckedChildren="No"
+                // label="Use Video Passthrough"
+                checkedChildren="Yes"
+                unCheckedChildren="No"
               />
             </div>
           </div>
 
           {/* VIDEO BITRATE FIELD */}
           <div className={`form-module ${dataState.videoPassthrough ? 'disabled' : ''}`}>
-            <Typography.Title level={3} className="section-title">Video Bitrate</Typography.Title>
-            <p className="description">
-              {VIDEO_VARIANT_DEFAULTS.videoBitrate.tip}
-            </p>
+            <Typography.Title level={3} className="section-title">
+              Video Bitrate
+            </Typography.Title>
+            <p className="description">{VIDEO_VARIANT_DEFAULTS.videoBitrate.tip}</p>
             <div className="segment-slider-container">
               <Slider
                 tipFormatter={value => `${value} ${videoBRUnit}`}

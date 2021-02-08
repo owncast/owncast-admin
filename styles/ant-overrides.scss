@@ -7,6 +7,8 @@
 .ant-layout-sider,
 .ant-layout-footer,
 .ant-card,
+.ant-collapse,
+.ant-collapse-content,
 .ant-table,
 .ant-table-thead > tr > th,
 .ant-table-small .ant-table-thead > tr > th,
@@ -158,15 +160,15 @@ h5.ant-typography,
 // ANT INPUT
 .ant-input-affix-wrapper,
 .ant-input-number {
-  background-color: rgba(0,0,0,.3);
-  border-color: rgba(0,0,0,1);
+  background-color: var(--textfield-bg);
+  border-color: var(--textfield-border);
   input,
   textarea {
     background-color: transparent;
     color: rgba(255,255,255,.85);
     border-color: rgba(0,0,0,1);
     &::placeholder {
-      color: rgba(255,255,255,.15);
+      color: var(--textfield-border);
     }
     &:-webkit-autofill {
       background-color: transparent;
@@ -203,14 +205,26 @@ textarea.ant-input {
 
 
 // ANT BUTTON
+.ant-btn-primary {
+  background-color: var(--owncast-purple);
+  border-color: var(--owncast-purple);
+}
 .ant-btn-primary:hover, 
 .ant-btn-primary:focus {
-  background-color: var(--default-text-color);
-  color: #40a9ff;
+  background-color: var(--form-focused);
+  border-color: var(--form-focused);
 }
-.ant-btn.ant-btn-primary:focus {
+.ant-btn.ant-btn-primary:hover {
   border-color: white;
+}
+.ant-btn-primary[disabled] {
+  background-color: rgba(255,255,255,.2);
+  border-color: rgba(255,255,255,.2);
 
+  &:hover {
+    background-color: rgba(255,255,255,.2);
+    border-color: rgba(255,255,255,.2);
+  }
 }
 .ant-input-affix-wrapper,
 .ant-btn {
@@ -222,7 +236,7 @@ textarea.ant-input {
 .ant-table-thead > tr > th,
 .ant-table-small .ant-table-thead > tr > th {
   transition-duration: var(--ant-transition-duration);
-  background-color: #000;
+  background-color: #112;
   font-weight: 500;
   color: var(--owncast-purple);
 }
@@ -230,14 +244,14 @@ textarea.ant-input {
 .ant-table-tbody > tr > td,
 .ant-table-thead > tr > th,
 .ant-table-small .ant-table-thead > tr > th {
-  border-color: rgba(255,255,255,.15);
+  border-color: var(--textfield-border);
 }
 .ant-table-tbody > tr > td {
   transition-duration: var(--ant-transition-duration);
-  background-color: rgba(22,22,39,1);
+  background-color: var(--textfield-bg);
 }
 .ant-table-tbody > tr:nth-child(odd) > td {
-  background-color: rgba(22,22,39,.5);
+  background-color: var(--textfield-bg);
 }
 
 
@@ -245,7 +259,6 @@ textarea.ant-input {
 // MODAL
 .ant-modal-content {
   border-radius: var(--container-border-radius);
-  border: 1px solid rgba(255,255,255, .25);
 }
 .ant-modal-header {
   border-radius: var(--container-border-radius) var(--container-border-radius) 0 0;
@@ -256,7 +269,7 @@ textarea.ant-input {
 .ant-modal-title {
   font-weight: 500;
   font-size: 1.25em;
-  color: var(--default-text-color);
+  color: var(--nav-selected-text);
 }
 .ant-modal-body {
   background-color: var(--nav-bg-color);
@@ -266,9 +279,10 @@ textarea.ant-input {
 .ant-modal-footer {
   background-color: black;
 }
+.ant-modal-content,
 .ant-modal-header,
 .ant-modal-footer {
-  border-color: rgba(255,255,255,.25);
+  border-color: #333;
 }
 
 // SELECT
@@ -295,4 +309,41 @@ textarea.ant-input {
   .ant-switch-inner {
     color: white;
   }
+}
+
+
+// ANT COLLAPSE
+.ant-collapse {
+  border-color: transparent;
+  &> .ant-collapse-item,
+  .ant-collapse-content {
+    border-color: transparent;
+    &> .ant-collapse-header {
+      border-color: transparent;
+      background-color: var(--textfield-bg);
+      color: var(--nav-text);
+      font-weight: 500;
+    }
+  }
+}
+.ant-collapse-content {
+  background-color: #181231;
+}
+
+
+
+// ANT POPOVER
+.ant-popover {
+
+}
+.ant-popover-inner {
+  background-color: black;
+}
+.ant-popover-message,
+.ant-popover-inner-content {
+  color: var(--default-text-color);
+
+}
+.ant-popover-placement-topLeft > .ant-popover-content > .ant-popover-arrow {
+  border-color: black;
 }

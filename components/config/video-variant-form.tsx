@@ -55,7 +55,6 @@ const VIDEO_VARIANT_DEFAULTS = {
     tip: "Optionally resize this content's height.",
   },
 };
-
 interface VideoVariantFormProps {
   dataState: VideoVariant;
   onUpdateField: FieldUpdaterFunc;
@@ -79,18 +78,20 @@ export default function VideoVariantForm({
   };
   const handleScaledWidthChanged = (args: UpdateArgs) => {
     const value = Number(args.value);
+    // eslint-disable-next-line no-restricted-globals
     if (!isNaN(value)) {
       return;
     }
-    onUpdateField({ fieldName: 'scaledWidth', value: value });
+    onUpdateField({ fieldName: 'scaledWidth', value });
   };
   const handleScaledHeightChanged = (args: UpdateArgs) => {
     const value = Number(args.value);
+    // eslint-disable-next-line no-restricted-globals
     if (!isNaN(value)) {
       return;
     }
 
-    onUpdateField({ fieldName: 'scaledHeight', value: value });
+    onUpdateField({ fieldName: 'scaledHeight', value });
   };
   const framerateDefaults = VIDEO_VARIANT_DEFAULTS.framerate;
   const framerateMin = framerateDefaults.min;
@@ -116,16 +117,14 @@ export default function VideoVariantForm({
       </div>
 
       {/* ENCODER PRESET FIELD */}
-      <div className="field">
-        <div className="form-component">
-          <CPUUsageSelector
-            defaultValue={dataState.cpuUsageLevel}
-            onChange={handleVideoCpuUsageLevelChange}
-          />
-          {selectedPresetNote ? (
-            <span className="selected-value-note">{selectedPresetNote}</span>
-          ) : null}
-        </div>
+      <div className="cpu-usage-container">
+        <CPUUsageSelector
+          defaultValue={dataState.cpuUsageLevel}
+          onChange={handleVideoCpuUsageLevelChange}
+        />
+        {selectedPresetNote ? (
+          <span className="selected-value-note">{selectedPresetNote}</span>
+        ) : null}
       </div>
 
       {/* VIDEO PASSTHROUGH FIELD */}
@@ -153,7 +152,7 @@ export default function VideoVariantForm({
           <InfoTip tip={VIDEO_VARIANT_DEFAULTS.videoBitrate.tip} />
           Video Bitrate:
         </p>
-        <div className="form-component">
+        <div className="segment-slider-container">
           <Slider
             tipFormatter={value => `${value} ${videoBRUnit}`}
             disabled={dataState.videoPassthrough === true}
@@ -174,7 +173,7 @@ export default function VideoVariantForm({
         </div>
       </div>
 
-      <Collapse>
+      <Collapse className="advanced-settings">
         <Panel header="Advanced Settings" key="1">
           <div className="section-intro">
             Resizing your content will take additional resources on your server. If you wish to
@@ -204,7 +203,7 @@ export default function VideoVariantForm({
               <InfoTip tip={VIDEO_VARIANT_DEFAULTS.framerate.tip} />
               Frame rate:
             </p>
-            <div className="form-component">
+            <div className="segment-slider-container form-component">
               <Slider
                 // tooltipVisible
                 tipFormatter={value => `${value} ${framerateUnit}`}

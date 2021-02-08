@@ -42,10 +42,14 @@ export default function CPUUsageSelector({ defaultValue, onChange }) {
 
   return (
     <div className="config-video-segements-conatiner">
-      <Title level={3}>CPU Usage</Title>
-      <p>There are trade-offs when considering CPU usage blah blah more wording here.</p>
+      <Title level={3} className="section-title">
+        CPU Usage
+      </Title>
+      <p className="description">
+        There are trade-offs when considering CPU usage blah blah more wording here.
+      </p>
       <br />
-      <br />
+
       <div className="segment-slider-container">
         <Slider
           tipFormatter={value => TOOLTIPS[value]}

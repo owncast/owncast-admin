@@ -113,15 +113,17 @@ export default function VideoLatency() {
 
   return (
     <div className="config-video-segements-conatiner">
-      <Title level={3}>Latency Buffer</Title>
-      <p>
+      <Title level={3} className="section-title">Latency Buffer</Title>
+      <p className="description">
         While it's natural to want to keep your latency as low as possible, you may experience
         reduced error tolerance and stability in some environments the lower you go.
       </p>
-      For interactive live streams you may want to experiment with a lower latency, for
-      non-interactive broadcasts you may want to increase it.{' '}
-      <a href="https://owncast.online/docs/encoding#latency-buffer">Read to learn more.</a>
-      <p></p>
+      <p className="description">
+        For interactive live streams you may want to experiment with a lower latency, for
+        non-interactive broadcasts you may want to increase it.{' '}
+        <a href="https://owncast.online/docs/encoding#latency-buffer">Read to learn more.</a>
+      </p>
+
       <div className="segment-slider-container">
         <Slider
           tipFormatter={value => <SegmentToolTip value={SLIDER_COMMENTS[value]} />}

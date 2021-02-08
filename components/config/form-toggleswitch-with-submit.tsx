@@ -25,6 +25,8 @@ interface ToggleSwitchProps {
   disabled?: boolean;
   label?: string;
   tip?: string;
+  useSubmit?: boolean;
+  onChange?: (arg: boolean) => void;
 }
 
 export default function ToggleSwitch(props: ToggleSwitchProps) {
@@ -35,7 +37,17 @@ export default function ToggleSwitch(props: ToggleSwitchProps) {
   const serverStatusData = useContext(ServerStatusContext);
   const { setFieldInConfigState } = serverStatusData || {};
 
-  const { apiPath, checked, configPath = '', disabled = false, fieldName, label, tip } = props;
+  const {
+    apiPath,
+    checked,
+    configPath = '',
+    disabled = false,
+    fieldName,
+    label,
+    tip,
+    useSubmit,
+    onChange,
+  } = props;
 
   const resetStates = () => {
     setSubmitStatus(null);
@@ -44,20 +56,25 @@ export default function ToggleSwitch(props: ToggleSwitchProps) {
   };
 
   const handleChange = async (isChecked: boolean) => {
-    setSubmitStatus(createInputStatus(STATUS_PROCESSING));
+    if (useSubmit) {
+      setSubmitStatus(createInputStatus(STATUS_PROCESSING));
 
-    await postConfigUpdateToAPI({
-      apiPath,
-      data: { value: isChecked },
-      onSuccess: () => {
-        setFieldInConfigState({ fieldName, value: isChecked, path: configPath });
-        setSubmitStatus(createInputStatus(STATUS_SUCCESS));
-      },
-      onError: (message: string) => {
-        setSubmitStatus(createInputStatus(STATUS_ERROR, `There was an error: ${message}`));
-      },
-    });
-    resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
+      await postConfigUpdateToAPI({
+        apiPath,
+        data: { value: isChecked },
+        onSuccess: () => {
+          setFieldInConfigState({ fieldName, value: isChecked, path: configPath });
+          setSubmitStatus(createInputStatus(STATUS_SUCCESS));
+        },
+        onError: (message: string) => {
+          setSubmitStatus(createInputStatus(STATUS_ERROR, `There was an error: ${message}`));
+        },
+      });
+      resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
+    }
+    if (onChange) {
+      onChange(isChecked);
+    }
   };
 
   const loading = submitStatus !== null && submitStatus.type === STATUS_PROCESSING;
@@ -95,4 +112,6 @@ ToggleSwitch.defaultProps = {
   disabled: false,
   label: '',
   tip: '',
+  useSubmit: false,
+  onChange: () => {},
 };

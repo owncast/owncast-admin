@@ -103,6 +103,7 @@ export default function EditInstanceDetails() {
         onChange={handleFieldChange}
       />
 
+      <br />
 
       <Title level={3} className="section-title">
         Owncast Directory Settings
@@ -117,12 +118,14 @@ export default function EditInstanceDetails() {
       <div className="config-yp-container">
         <ToggleSwitch
           fieldName="enabled"
+          useSubmit
           {...FIELD_PROPS_YP}
           checked={formDataValues.enabled}
           disabled={!hasInstanceUrl}
         />
         <ToggleSwitch
           fieldName="nsfw"
+          useSubmit
           {...FIELD_PROPS_NSFW}
           checked={formDataValues.nsfw}
           disabled={!hasInstanceUrl}

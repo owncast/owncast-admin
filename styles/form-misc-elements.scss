@@ -39,9 +39,9 @@ Ideal for wrapping each Textfield on a page with many text fields in a row. This
 */
 .field-container {
   padding: .85em 0 .5em;
-  &:nth-child(even) {
-    background-color: rgba(0,0,0,.25);
-  }
+  // &:nth-child(even) {
+  //   background-color: rgba(0,0,0,.25);
+  // }
 }
 
 

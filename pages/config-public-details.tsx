@@ -2,7 +2,6 @@ import React from 'react';
 import { Typography } from 'antd';
 
 import EditInstanceDetails from '../components/config/edit-instance-details';
-import EditDirectoryDetails from '../components/config/edit-directory';
 import EditInstanceTags from '../components/config/edit-tags';
 import EditSocialLinks from '../components/config/edit-social-links';
 import EditPageContent from '../components/config/edit-page-content';

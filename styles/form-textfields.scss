@@ -154,4 +154,16 @@ Base styles for
     margin-top: 0;
   }
 
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    
+    .status-container {
+      width: auto;
+      margin: 0 0 0 1em;
+      display: inline-block;
+    }
+  }
 }

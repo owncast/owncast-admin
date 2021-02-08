@@ -81,8 +81,8 @@ export default function ToggleSwitch(props: ToggleSwitchProps) {
             unCheckedChildren="OFF"
             disabled={disabled}
           />
+          <FormStatusIndicator status={submitStatus} />
         </div>
-        <FormStatusIndicator status={submitStatus} />
         <p className="field-tip">{tip}</p>
       </div>
     </div>

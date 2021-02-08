@@ -104,7 +104,6 @@ export default function EditInstanceDetails() {
       />
 
 
-    
       <Title level={3} className="section-title">
         Owncast Directory Settings
       </Title>

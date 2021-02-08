@@ -1,3 +1,6 @@
+// This is a wrapper for the Ant Switch component.
+// onChange of the switch, it will automatically post a change to the config api.
+
 import React, { useState, useContext } from 'react';
 import { Switch } from 'antd';
 import {
@@ -12,7 +15,6 @@ import FormStatusIndicator from './form-status-indicator';
 import { RESET_TIMEOUT, postConfigUpdateToAPI } from '../../utils/config-constants';
 
 import { ServerStatusContext } from '../../utils/server-status-context';
-import InfoTip from '../info-tip';
 
 interface ToggleSwitchProps {
   apiPath: string;
@@ -60,23 +62,29 @@ export default function ToggleSwitch(props: ToggleSwitchProps) {
 
   const loading = submitStatus !== null && submitStatus.type === STATUS_PROCESSING;
   return (
-    <div className="toggleswitch-container">
-      <div className="toggleswitch">
-        <Switch
-          className={`switch field-${fieldName}`}
-          loading={loading}
-          onChange={handleChange}
-          defaultChecked={checked}
-          checked={checked}
-          checkedChildren="ON"
-          unCheckedChildren="OFF"
-          disabled={disabled}
-        />
-        <span className="label">
-          {label} <InfoTip tip={tip} />
-        </span>
+    <div className="formfield-container toggleswitch-container">
+      {label ? (
+        <div className="label-side">
+          <span className="formfield-label">{label}</span>
+        </div>
+      ) : null}
+
+      <div className="input-side">
+        <div className="input-group">
+          <Switch
+            className={`switch field-${fieldName}`}
+            loading={loading}
+            onChange={handleChange}
+            defaultChecked={checked}
+            checked={checked}
+            checkedChildren="ON"
+            unCheckedChildren="OFF"
+            disabled={disabled}
+          />
+        </div>
+        <FormStatusIndicator status={submitStatus} />
+        <p className="field-tip">{tip}</p>
       </div>
-      <FormStatusIndicator status={submitStatus} />
     </div>
   );
 }

@@ -1,8 +1,14 @@
-// Base styles for form-textfield, form-textfield-with-submit
+/* 
+Base styles for 
+- form-textfield, 
+- form-textfield-with-submit
+- form-toggleswitch
 
+  Both text and toggle use this class for base layout.
+*/
+.formfield-container {
+  --form-label-container-width: 15em;
 
-/* TEXTFIELD-CONTAINER BASE */
-.textfield-container {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -10,12 +16,12 @@
   width: 100%;
   max-width: 600px;
   .label-side {
-    padding-right: .75em;
+    padding-right: 1.25em;
     text-align: right;
-    width: 12em;
+    width: var(--form-label-container-width);
     margin: .2em 0;
   }
-  .textfield-label {
+  .formfield-label {
     font-weight: 500;
     font-size: 1em;
     color: var(--owncast-purple);
@@ -25,7 +31,7 @@
     }
   }
   &.required {
-    .textfield-label {
+    .formfield-label {
       &::before {
         content: '*';
         display: inline-block;
@@ -97,7 +103,7 @@
     justify-content: flex-start;
 
     .label-spacer {
-      width: 12em;
+      width: var(--form-label-container-width); 
     }
     .lower-content {
       display: flex;
@@ -137,4 +143,15 @@
       display: none;
     }
   }
+}
+
+
+/* TOGGLE SWITCH CONTAINER BASE */
+.toggleswitch-container {
+  margin-bottom: 1em;
+
+  .label-side { 
+    margin-top: 0;
+  }
+
 }

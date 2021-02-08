@@ -8,7 +8,6 @@ import '../styles/markdown-editor.scss';
 import '../styles/main-layout.scss';
 
 import '../styles/form-textfields.scss';
-import '../styles/form-toggleswitch.scss';
 import '../styles/form-misc-elements.scss';
 import '../styles/config-socialhandles.scss';
 import '../styles/config-storage.scss';

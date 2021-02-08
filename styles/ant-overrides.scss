@@ -288,5 +288,11 @@ textarea.ant-input {
 
 // ANT SWITCH
 .ant-switch {
-  background-color: black;
+  background-color: #666;
+}
+.ant-switch-checked {
+  background-color: var(--online-color);
+  .ant-switch-inner {
+    color: black;
+  }
 }

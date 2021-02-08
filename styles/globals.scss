@@ -56,11 +56,12 @@ p.description {
   margin: 2em auto;
 }
 
-h2.page-title,
-h3.page-title
+h2.ant-typography.page-title,
+h3.ant-typography.page-title
  {
   font-weight: 400;
   font-size: 1.5em;
+  color: var(--nav-selected-text);
 }
 h2.section-title,
 h3.section-title {

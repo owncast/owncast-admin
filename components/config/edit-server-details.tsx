@@ -139,11 +139,13 @@ export default function EditInstanceDetails() {
         onSubmit={showConfigurationRestartMessage}
       />
 
-      <Collapse className="advanced-settings">
-        <Panel header="Advanced Settings" key="1">
-          <ResetYP />
-        </Panel>
-      </Collapse>
+      {yp.enabled ? (
+        <Collapse className="advanced-settings">
+          <Panel header="Advanced Settings" key="1">
+            <ResetYP />
+          </Panel>
+        </Collapse>
+      ) : null}
     </div>
   );
 }

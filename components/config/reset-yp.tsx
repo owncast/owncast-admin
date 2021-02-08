@@ -3,15 +3,9 @@ import { useContext } from 'react';
 import { AlertMessageContext } from '../../utils/alert-message-context';
 
 import { API_YP_RESET, fetchData } from '../../utils/apis';
-import { ServerStatusContext } from '../../utils/server-status-context';
 
 export default function ResetYP() {
-  const serverStatusData = useContext(ServerStatusContext);
   const { setMessage } = useContext(AlertMessageContext);
-
-  const { serverConfig } = serverStatusData || {};
-
-  const { yp } = serverConfig;
 
   const { Title } = Typography;
 
@@ -23,8 +17,6 @@ export default function ResetYP() {
       alert(error);
     }
   };
-  // TODO: Uncomment this after it's styled.
-  // if (yp.enabled) {
   return (
     <>
       <Title level={3} className="section-title">
@@ -47,6 +39,4 @@ export default function ResetYP() {
       </Popconfirm>
     </>
   );
-  // }
-  // return null;
 }

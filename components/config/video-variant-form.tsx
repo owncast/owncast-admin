@@ -123,9 +123,9 @@ export default function VideoVariantForm({
               defaultValue={dataState.cpuUsageLevel}
               onChange={handleVideoCpuUsageLevelChange}
             />
-            {selectedPresetNote ? (
+            {selectedPresetNote && (
               <span className="selected-value-note">{selectedPresetNote}</span>
-            ) : null}
+            )}
           </div>
 
           {/* VIDEO PASSTHROUGH FIELD */}
@@ -168,9 +168,9 @@ export default function VideoVariantForm({
                   [videoBRMax]: `${videoBRMax} ${videoBRUnit}`,
                 }}
               />
-              {selectedVideoBRnote ? (
+              {selectedVideoBRnote && (
                 <span className="selected-value-note">{selectedVideoBRnote}</span>
-              ) : null}
+              )}
             </div>
           </div>
         </div>

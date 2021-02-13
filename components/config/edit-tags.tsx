@@ -21,6 +21,8 @@ import {
 
 const { Title } = Typography;
 
+const TAG_COLOR = '#5a67d8';
+
 export default function EditInstanceTags() {
   const [newTagInput, setNewTagInput] = useState<string>('');
   const [submitStatus, setSubmitStatus] = useState<StatusState>(null);
@@ -113,7 +115,7 @@ export default function EditInstanceTags() {
             handleDeleteTag(index);
           };
           return (
-            <Tag closable onClose={handleClose} color="#5a67d8" key={`tag-${tag}-${index}`}>
+            <Tag closable onClose={handleClose} color={TAG_COLOR} key={`tag-${tag}-${index}`}>
               {tag}
             </Tag>
           );

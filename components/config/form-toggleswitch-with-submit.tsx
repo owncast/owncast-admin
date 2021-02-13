@@ -28,7 +28,6 @@ interface ToggleSwitchProps {
   useSubmit?: boolean;
   onChange?: (arg: boolean) => void;
 }
-
 export default function ToggleSwitch(props: ToggleSwitchProps) {
   const [submitStatus, setSubmitStatus] = useState<StatusState>(null);
 
@@ -80,11 +79,11 @@ export default function ToggleSwitch(props: ToggleSwitchProps) {
   const loading = submitStatus !== null && submitStatus.type === STATUS_PROCESSING;
   return (
     <div className="formfield-container toggleswitch-container">
-      {label ? (
+      {label && (
         <div className="label-side">
           <span className="formfield-label">{label}</span>
         </div>
-      ) : null}
+      )}
 
       <div className="input-side">
         <div className="input-group">
@@ -113,5 +112,5 @@ ToggleSwitch.defaultProps = {
   label: '',
   tip: '',
   useSubmit: false,
-  onChange: () => {},
+  onChange: null,
 };

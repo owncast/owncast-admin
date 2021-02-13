@@ -20,8 +20,8 @@ const TOOLTIPS = {
   5: 'highest',
 };
 interface Props {
-  defaultValue: string;
-  onChange: (arg: string) => void;
+  defaultValue: number;
+  onChange: (arg: number) => void;
 }
 export default function CPUUsageSelector({ defaultValue, onChange }: Props) {
   const [selectedOption, setSelectedOption] = useState(null);

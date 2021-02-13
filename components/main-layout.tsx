@@ -49,7 +49,7 @@ export default function MainLayout(props) {
   const { Header, Footer, Content, Sider } = Layout;
   const { SubMenu } = Menu;
 
-  const [upgradeVersion, setUpgradeVersion] = useState(null);
+  const [upgradeVersion, setUpgradeVersion] = useState('');
   const checkForUpgrade = async () => {
     try {
       const result = await upgradeVersionAvailable(versionNumber);
@@ -80,7 +80,8 @@ export default function MainLayout(props) {
   });
 
   const upgradeMenuItemStyle = upgradeVersion ? 'block' : 'none';
-  const upgradeVersionString = upgradeVersion || '';
+  const upgradeVersionString = `${upgradeVersion}` || '';
+  const upgradeMessage = `Upgrade to v${upgradeVersionString}`;
 
   const clearAlertMessage = () => {
     alertMessage.setMessage(null);
@@ -170,9 +171,7 @@ export default function MainLayout(props) {
               <Link href="/logs">Logs</Link>
             </Menu.Item>
             <Menu.Item key="upgrade" style={{ display: upgradeMenuItemStyle }}>
-              <Link href="/upgrade">
-                <a>Upgrade to v{upgradeVersionString}</a>
-              </Link>
+              <Link href="/upgrade">{upgradeMessage}</Link>
             </Menu.Item>
           </SubMenu>
           <SubMenu key="integrations-menu" icon={<ExperimentOutlined />} title="Integrations">

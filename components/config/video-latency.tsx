@@ -105,9 +105,11 @@ export default function VideoLatency() {
 
   return (
     <div className="config-video-segements-conatiner">
-      <Title level={3} className="section-title">Latency Buffer</Title>
+      <Title level={3} className="section-title">
+        Latency Buffer
+      </Title>
       <p className="description">
-        While it's natural to want to keep your latency as low as possible, you may experience
+        While it&apos;s natural to want to keep your latency as low as possible, you may experience
         reduced error tolerance and stability in some environments the lower you go.
       </p>
       <p className="description">

@@ -19,8 +19,11 @@ const TOOLTIPS = {
   4: 'high',
   5: 'highest',
 };
-
-export default function CPUUsageSelector({ defaultValue, onChange }) {
+interface Props {
+  defaultValue: string;
+  onChange: (arg: string) => void;
+}
+export default function CPUUsageSelector({ defaultValue, onChange }: Props) {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const serverStatusData = useContext(ServerStatusContext);

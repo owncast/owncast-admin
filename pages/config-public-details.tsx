@@ -33,9 +33,7 @@ export default function PublicFacingDetails() {
             <EditSocialLinks />
           </div>
         </div>
-
       </div>
-      
       <div className="form-module page-content-module">
         <EditPageContent />
       </div>

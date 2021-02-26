@@ -117,7 +117,12 @@ export default function EditInstanceDetails() {
           Learn more
         </a>
         .
-        {!yp.instanceUrl && <div><br/>You must set your server URL above to enable the directory.</div>}
+        {!yp.instanceUrl && (
+          <div>
+            <br />
+            You must set your server URL above to enable the directory.
+          </div>
+        )}
       </p>
 
       <div className="config-yp-container">

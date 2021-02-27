@@ -112,8 +112,7 @@ export default function VideoVariantForm({
 
       {videoPassthroughEnabled && (
         <p className="passthrough-warning">
-          NOTE: Video Passthrough is <em>enabled</em>. Give me all your bitties and I&apos;ll turn
-          it off for you.
+          NOTE: Video Passthrough for this output stream variant is <em>enabled</em>, disabling the below video encoding settings.
         </p>
       )}
 

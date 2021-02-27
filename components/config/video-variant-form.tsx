@@ -2,6 +2,7 @@
 import React from 'react';
 import { Popconfirm, Row, Col, Slider, Collapse, Typography } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons';
+import classNames from 'classnames';
 import { FieldUpdaterFunc, VideoVariant, UpdateArgs } from '../../types/config-section';
 import TextField from './form-textfield';
 import {
@@ -15,7 +16,6 @@ import {
   FRAMERATE_DEFAULTS,
   FRAMERATE_TOOLTIPS,
 } from '../../utils/config-constants';
-// import CPUUsageSelector from './cpu-usage';
 import ToggleSwitch from './form-toggleswitch';
 
 const { Panel } = Collapse;
@@ -69,6 +69,7 @@ export default function VideoVariantForm({
     }
   };
 
+  // Slider notes
   const selectedVideoBRnote = () => {
     if (videoPassthroughEnabled) {
       return 'Bitrate selection is disabled when Video Passthrough is enabled.';
@@ -96,18 +97,24 @@ export default function VideoVariantForm({
     return ENCODER_PRESET_TOOLTIPS[dataState.cpuUsageLevel] || '';
   };
 
+  const classes = classNames({
+    'config-variant-form': true,
+    'video-passthrough-enabled': videoPassthroughEnabled,
+  });
   return (
-    <div
-      className={`config-variant-form ${
-        videoPassthroughEnabled ? ' video-passthrough-enabled' : ''
-      }`}
-    >
+    <div className={classes}>
       <p className="description">
         <a href="https://owncast.online/docs/video" target="_blank" rel="noopener noreferrer">
           Learn more
         </a>{' '}
         about how each of these settings can impact the performance of your server.
       </p>
+
+      {videoPassthroughEnabled && (
+        <p className="passthrough-warning">
+          NOTE: Video Passthrough is <em>enabled</em>. Give me all your bitties and I&apos;ll turn it off for you.
+        </p>
+      )}
 
       <Row gutter={16}>
         <Col sm={24} md={12}>
@@ -214,7 +221,7 @@ export default function VideoVariantForm({
             </Col>
             <Col sm={24} md={12}>
               {/* VIDEO PASSTHROUGH FIELD */}
-              <div className="form-module video-passthroug-module">
+              <div className="form-module video-passthrough-module">
                 <Typography.Title level={3}>Video Passthrough</Typography.Title>
                 <p className="description">
                   <p>

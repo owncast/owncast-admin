@@ -238,7 +238,6 @@ export const ENCODER_PRESET_SLIDER_MARKS = {
   4: '',
   5: 'highest',
 };
-// CPU
 export const ENCODER_PRESET_TOOLTIPS = {
   1: 'Lowest CPU usage - lowest quality video',
   2: 'Low CPU usage - low quality video',

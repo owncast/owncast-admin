@@ -86,4 +86,5 @@ export interface ConfigDetails {
   webServerPort: string;
   yp: ConfigDirectoryFields;
   videoSettings: VideoSettingsFields;
+  chatDisabled: boolean;
 }

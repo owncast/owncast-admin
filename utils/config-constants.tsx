@@ -25,6 +25,7 @@ export const API_VIDEO_SEGMENTS = '/video/streamlatencylevel';
 export const API_VIDEO_VARIANTS = '/video/streamoutputvariants';
 export const API_WEB_PORT = '/webserverport';
 export const API_YP_SWITCH = '/directoryenabled';
+export const API_CHAT_DISABLE = '/chat/disable';
 
 export async function postConfigUpdateToAPI(args: ApiPostArgs) {
   const { apiPath, data, onSuccess, onError } = args;
@@ -156,6 +157,14 @@ export const DEFAULT_VARIANT_STATE: VideoVariant = {
   cpuUsageLevel: 3,
   scaledHeight: null,
   scaledWidth: null,
+};
+
+export const FIELD_PROPS_DISABLE_CHAT = {
+  apiPath: API_CHAT_DISABLE,
+  configPath: 'chatDisabled',
+  label: 'Disable chat',
+  tip: 'Hide the web chat interface.',
+  useSubmit: true,
 };
 
 export const VIDEO_VARIANT_SETTING_DEFAULTS = {

@@ -90,7 +90,7 @@ export default function EditInstanceDetails() {
 
   function handleChatDisableChange(disabled: boolean) {
     handleFieldChange({ fieldName: 'chatDisabled', value: disabled });
-  };
+  }
 
   return (
     <div className="edit-server-details-container">
@@ -145,12 +145,12 @@ export default function EditInstanceDetails() {
         onChange={handleFieldChange}
         onSubmit={showConfigurationRestartMessage}
       />
-        <ToggleSwitch
-          fieldName="chatDisabled"
-          {...FIELD_PROPS_DISABLE_CHAT}
-          checked={formDataValues.chatDisabled}
-          onChange={handleChatDisableChange}
-        />
+      <ToggleSwitch
+        fieldName="chatDisabled"
+        {...FIELD_PROPS_DISABLE_CHAT}
+        checked={formDataValues.chatDisabled}
+        onChange={handleChatDisableChange}
+      />
 
       {yp.enabled && (
         <Collapse className="advanced-settings">

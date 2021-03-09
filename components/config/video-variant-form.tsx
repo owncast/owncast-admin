@@ -127,7 +127,7 @@ export default function VideoVariantForm({
           <div className="form-module cpu-usage-container">
             <Typography.Title level={3}>CPU Usage</Typography.Title>
             <p className="description">
-              Reduce to improve server performance, or increase it to improve video quality.
+              Reduce it to improve server performance, or increase it to improve video quality.
             </p>
             <div className="segment-slider-container">
               <Slider

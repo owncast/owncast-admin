@@ -8,6 +8,7 @@ import TextField from './form-textfield';
 import {
   DEFAULT_VARIANT_STATE,
   VIDEO_VARIANT_SETTING_DEFAULTS,
+  VIDEO_NAME_DEFAULTS,
   ENCODER_PRESET_SLIDER_MARKS,
   ENCODER_PRESET_TOOLTIPS,
   VIDEO_BITRATE_DEFAULTS,
@@ -20,60 +21,6 @@ import ToggleSwitch from './form-toggleswitch';
 
 const { Panel } = Collapse;
 
-const VIDEO_VARIANT_DEFAULTS = {
-  framerate: {
-    min: 24,
-    max: 120,
-    defaultValue: 24,
-    unit: 'fps',
-    incrementBy: null,
-    tip:
-      'Reducing your framerate will decrease the amount of video that needs to be encoded and sent to your viewers, saving CPU and bandwidth at the expense of smoothness.  A lower value is generally is fine for most content.',
-  },
-  videoBitrate: {
-    min: 600,
-    max: 6000,
-    defaultValue: 1200,
-    unit: 'kbps',
-    incrementBy: 100,
-    tip: 'The overall quality of your stream is generally impacted most by bitrate.',
-  },
-  audioBitrate: {
-    min: 600,
-    max: 1200,
-    defaultValue: 800,
-    unit: 'kbps',
-    incrementBy: 100,
-    tip: 'nothing to see here',
-  },
-  videoPassthrough: {
-    tip: 'If No is selected, then you should set your desired Video Bitrate.',
-  },
-  audioPassthrough: {
-    tip: 'If No is selected, then you should set your desired Audio Bitrate.',
-  },
-  scaledWidth: {
-    fieldName: 'scaledWidth',
-    label: 'Resized Width',
-    maxLength: 4,
-    placeholder: '1080',
-    tip: "Optionally resize this content's width.",
-  },
-  scaledHeight: {
-    fieldName: 'scaledHeight',
-    label: 'Resized Height',
-    maxLength: 4,
-    placeholder: '720',
-    tip: "Optionally resize this content's height.",
-  },
-  name: {
-    fieldName: 'name',
-    label: 'Name',
-    maxLength: 12,
-    placeholder: 'HD or Low',
-    tip: 'Human-readable name for for displaying in the quality selector.',
-  }
-};
 interface VideoVariantFormProps {
   dataState: VideoVariant;
   onUpdateField: FieldUpdaterFunc;
@@ -108,22 +55,7 @@ export default function VideoVariantForm({
     if (isNaN(value)) {
       return;
     }
-
     onUpdateField({ fieldName: 'scaledHeight', value: value || 0 });
-  };
-  const handleNameChanged = (args: UpdateArgs) => {
-    onUpdateField({ fieldName: 'name', value: args.value})
-  };
-  const framerateDefaults = VIDEO_VARIANT_DEFAULTS.framerate;
-  const framerateMin = framerateDefaults.min;
-  const framerateMax = framerateDefaults.max;
-  const framerateUnit = framerateDefaults.unit;
-  const framerateMarks = {
-    [framerateMin]: `${framerateMin} ${framerateUnit}`,
-    30: '',
-    60: '',
-    90: '',
-    [framerateMax]: `${framerateMax} ${framerateUnit}`,
   };
 
   // Video passthrough handling
@@ -136,6 +68,10 @@ export default function VideoVariantForm({
     if (videoPassthroughEnabled) {
       onUpdateField({ fieldName: 'videoPassthrough', value });
     }
+  };
+
+  const handleNameChanged = (args: UpdateArgs) => {
+    onUpdateField({ fieldName: 'name', value: args.value})
   };
 
   // Slider notes
@@ -193,7 +129,7 @@ export default function VideoVariantForm({
       <Row gutter={16}>
       <TextField
         maxLength="10"
-        {...VIDEO_VARIANT_DEFAULTS.name}
+        {...VIDEO_NAME_DEFAULTS}
         value={dataState.name}
         onChange={handleNameChanged}
       />
@@ -264,11 +200,6 @@ export default function VideoVariantForm({
           </div>
         </Col>
       </Row>
-      <p className="description">
-        <a href="https://owncast.online/docs/video">Learn more</a> about how each of these settings
-        can impact the performance of your server.
-      </p>
-
       <Collapse className="advanced-settings">
         <Panel header="Advanced Settings" key="1">
           <Row gutter={16}>

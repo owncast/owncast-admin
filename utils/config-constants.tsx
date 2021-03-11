@@ -156,7 +156,7 @@ export const DEFAULT_VARIANT_STATE: VideoVariant = {
   cpuUsageLevel: 3,
   scaledHeight: null,
   scaledWidth: null,
-  name: "",
+  name: '',
 };
 
 export const VIDEO_VARIANT_SETTING_DEFAULTS = {

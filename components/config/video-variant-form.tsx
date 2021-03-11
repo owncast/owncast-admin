@@ -71,7 +71,7 @@ export default function VideoVariantForm({
   };
 
   const handleNameChanged = (args: UpdateArgs) => {
-    onUpdateField({ fieldName: 'name', value: args.value})
+    onUpdateField({ fieldName: 'name', value: args.value });
   };
 
   // Slider notes
@@ -127,12 +127,12 @@ export default function VideoVariantForm({
       )}
 
       <Row gutter={16}>
-      <TextField
-        maxLength="10"
-        {...VIDEO_NAME_DEFAULTS}
-        value={dataState.name}
-        onChange={handleNameChanged}
-      />
+        <TextField
+          maxLength="10"
+          {...VIDEO_NAME_DEFAULTS}
+          value={dataState.name}
+          onChange={handleNameChanged}
+        />
         <Col sm={24} md={12}>
           {/* ENCODER PRESET (CPU USAGE) FIELD */}
           <div className="form-module cpu-usage-container">

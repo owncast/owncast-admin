@@ -1,12 +1,27 @@
+// comment
+
 import React, { useState, useEffect, useContext } from 'react';
 import { Table, Tag, Space, Button, Modal, Checkbox, Input, Typography, Tooltip } from 'antd';
 import { ServerStatusContext } from '../utils/server-status-context';
 import { DeleteOutlined } from '@ant-design/icons';
 import isValidUrl from '../utils/urls';
+import FormStatusIndicator from '../components/config/form-status-indicator';
+import {
+  createInputStatus,
+  StatusState,
+  STATUS_ERROR,
+  STATUS_PROCESSING,
+  STATUS_SUCCESS,
+} from '../utils/input-statuses';
 
-import { fetchData, CREATE_WEBHOOK, EXTERNAL_ACTIONS } from '../utils/apis';
+import {
+  postConfigUpdateToAPI,
+  API_EXTERNAL_ACTIONS,
+  RESET_TIMEOUT,
+} from '../utils/config-constants';
 
 const { Title, Paragraph } = Typography;
+let resetTimer = null;
 
 interface Props {
   onCancel: () => void;
@@ -15,9 +30,6 @@ interface Props {
 }
 
 function NewActionModal(props: Props) {
-  const serverStatusData = useContext(ServerStatusContext);
-  const { serverConfig, setFieldInConfigState } = serverStatusData || {};
-
   const { onOk, onCancel, visible } = props;
 
   const [actionUrl, setActionUrl] = useState('');
@@ -84,8 +96,19 @@ export default function Actions() {
   const serverStatusData = useContext(ServerStatusContext);
   const { serverConfig, setFieldInConfigState } = serverStatusData || {};
   const { externalActions } = serverConfig;
-  const [actions, setActions] = useState(externalActions);
+  const [actions, setActions] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const resetStates = () => {
+    setSubmitStatus(null);
+    resetTimer = null;
+    clearTimeout(resetTimer);
+  };
+
+  useEffect(() => {
+    setActions(externalActions || []);
+  }, [externalActions]);
 
   const columns = [
     {
@@ -93,7 +116,7 @@ export default function Actions() {
       key: 'delete',
       render: (text, record) => (
         <Space size="middle">
-          <Button onClick={() => handleDelete(record.id)} icon={<DeleteOutlined />} />
+          <Button onClick={() => handleDelete(record)} icon={<DeleteOutlined />} />
         </Space>
       ),
     },
@@ -122,7 +145,13 @@ export default function Actions() {
     },
   ];
 
-  async function handleDelete(id) {
+  async function handleDelete(action) {
+    let actionsData = [...actions];
+    const index = actions.findIndex(item => item.url === action.url);
+    actionsData.splice(index, 1);
+
+    setActions(actionsData);
+    save(actionsData);
     try {
     } catch (error) {
       console.error(error);
@@ -136,14 +165,30 @@ export default function Actions() {
     openExternally: boolean,
   ) {
     try {
-      const newAction = await fetchData(EXTERNAL_ACTIONS, {
-        method: 'POST',
-        data: { url, title, description, openExternally },
-      });
-      setActions(actions.concat({ url, title, description, openExternally }));
+      let actionsData = [...actions];
+      const updatedActions = actionsData.concat({ url, title, description, openExternally });
+      setActions(updatedActions);
+      await save(updatedActions);
     } catch (error) {
       console.error(error);
     }
+  }
+
+  async function save(actionsData) {
+    await postConfigUpdateToAPI({
+      apiPath: API_EXTERNAL_ACTIONS,
+      data: { value: actionsData },
+      onSuccess: () => {
+        setFieldInConfigState({ fieldName: 'externalActions', value: actionsData, path: '' });
+        setSubmitStatus(createInputStatus(STATUS_SUCCESS, 'Updated.'));
+        resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
+      },
+      onError: (message: string) => {
+        console.log(message);
+        setSubmitStatus(createInputStatus(STATUS_ERROR, message));
+        resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
+      },
+    });
   }
 
   const showCreateModal = () => {
@@ -178,6 +223,8 @@ export default function Actions() {
       <Button type="primary" onClick={showCreateModal}>
         Create New Action
       </Button>
+      <FormStatusIndicator status={submitStatus} />
+
       <NewActionModal
         visible={isModalVisible}
         onOk={handleModalSaveButton}

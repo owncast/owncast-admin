@@ -1,7 +1,7 @@
 // comment
 
 import React, { useState, useEffect, useContext } from 'react';
-import { Table, Tag, Space, Button, Modal, Checkbox, Input, Typography, Tooltip } from 'antd';
+import { Table, Space, Button, Modal, Checkbox, Input, Typography } from 'antd';
 import { ServerStatusContext } from '../utils/server-status-context';
 import { DeleteOutlined } from '@ant-design/icons';
 import isValidUrl from '../utils/urls';
@@ -35,10 +35,12 @@ function NewActionModal(props: Props) {
   const [actionUrl, setActionUrl] = useState('');
   const [actionTitle, setActionTitle] = useState('');
   const [actionDescription, setActionDescription] = useState('');
+  const [actionIcon, setActionIcon] = useState('');
+  const [actionColor, setActionColor] = useState('');
   const [openExternally, setOpenExternally] = useState(false);
 
   function save() {
-    onOk(actionUrl, actionTitle, actionDescription, openExternally);
+    onOk(actionUrl, actionTitle, actionDescription, actionIcon, actionColor, openExternally);
   }
 
   const okButtonProps = {
@@ -61,6 +63,7 @@ function NewActionModal(props: Props) {
         <p>
           <Input
             value={actionUrl}
+            required
             placeholder="https://myserver.com/action (required)"
             onChange={input => setActionUrl(input.currentTarget.value)}
           />
@@ -68,6 +71,7 @@ function NewActionModal(props: Props) {
         <p>
           <Input
             value={actionTitle}
+            required
             placeholder="Your action title (required)"
             onChange={input => setActionTitle(input.currentTarget.value)}
           />
@@ -80,6 +84,23 @@ function NewActionModal(props: Props) {
             onChange={input => setActionDescription(input.currentTarget.value)}
           />
         </p>
+
+        <p>
+          <Input
+            value={actionIcon}
+            placeholder="https://myserver.com/action/icon.png (optional)"
+            onChange={input => setActionIcon(input.currentTarget.value)}
+          />
+        </p>
+
+        <p>
+          <Input
+            type="color"
+            value={actionColor}
+            onChange={input => setActionColor(input.currentTarget.value)}
+          />
+        </p>
+
         <Checkbox
           checked={openExternally}
           defaultChecked={openExternally}
@@ -136,6 +157,22 @@ export default function Actions() {
       key: 'url',
     },
     {
+      title: 'Icon',
+      dataIndex: 'icon',
+      key: 'icon',
+      render: (url: string) => {
+        return url ? <img src={url} /> : null;
+      },
+    },
+    {
+      title: 'Color',
+      dataIndex: 'color',
+      key: 'color',
+      render: (color: string) => {
+        return color ? (<div style={{backgroundColor: color, height: '30px'}}>{color}</div>) : null;
+      },
+    },
+    {
       title: 'Opens',
       dataIndex: 'openExternally',
       key: 'openExternally',
@@ -162,11 +199,13 @@ export default function Actions() {
     url: string,
     title: string,
     description: string,
+    icon: string,
+    color: string,
     openExternally: boolean,
   ) {
     try {
       let actionsData = [...actions];
-      const updatedActions = actionsData.concat({ url, title, description, openExternally });
+      const updatedActions = actionsData.concat({ url, title, description, icon, color, openExternally });
       setActions(updatedActions);
       await save(updatedActions);
     } catch (error) {
@@ -199,10 +238,12 @@ export default function Actions() {
     actionUrl: string,
     actionTitle: string,
     actionDescription: string,
+    actionIcon: string,
+    actionColor: string,
     openExternally: boolean,
   ) => {
     setIsModalVisible(false);
-    handleSave(actionUrl, actionTitle, actionDescription, openExternally);
+    handleSave(actionUrl, actionTitle, actionDescription, actionIcon, actionColor, openExternally);
   };
 
   const handleModalCancelButton = () => {

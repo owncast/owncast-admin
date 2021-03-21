@@ -12,11 +12,11 @@ import {
   TEXTFIELD_PROPS_INSTANCE_URL,
   TEXTFIELD_PROPS_SERVER_NAME,
   TEXTFIELD_PROPS_SERVER_SUMMARY,
+  TEXTFIELD_PROPS_SERVER_WELCOME_MESSAGE,
   API_YP_SWITCH,
   FIELD_PROPS_YP,
   FIELD_PROPS_NSFW,
 } from '../../utils/config-constants';
-import { NEXT_PUBLIC_API_HOST } from '../../utils/apis';
 
 import { UpdateArgs } from '../../types/config-section';
 import ToggleSwitch from './form-toggleswitch';
@@ -97,6 +97,14 @@ export default function EditInstanceDetails() {
         initialValue={instanceDetails.summary}
         onChange={handleFieldChange}
       />
+      <TextFieldWithSubmit
+        fieldName="welcomeMessage"
+        {...TEXTFIELD_PROPS_SERVER_WELCOME_MESSAGE}
+        type={TEXTFIELD_TYPE_TEXTAREA}
+        value={formDataValues.welcomeMessage}
+        initialValue={instanceDetails.welcomeMessage}
+        onChange={handleFieldChange}
+      />
 
       {/* Logo section */}
       <EditLogo />
@@ -108,7 +116,11 @@ export default function EditInstanceDetails() {
           <strong>Owncast Directory</strong>
         </a>
         . This is an external service run by the Owncast project.{' '}
-        <a href="https://owncast.online/docs/directory/" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://owncast.online/docs/directory/?source=admin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Learn more
         </a>
         .

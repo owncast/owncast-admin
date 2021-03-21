@@ -8,6 +8,7 @@ import TextField from './form-textfield';
 import {
   DEFAULT_VARIANT_STATE,
   VIDEO_VARIANT_SETTING_DEFAULTS,
+  VIDEO_NAME_DEFAULTS,
   ENCODER_PRESET_SLIDER_MARKS,
   ENCODER_PRESET_TOOLTIPS,
   VIDEO_BITRATE_DEFAULTS,
@@ -46,7 +47,7 @@ export default function VideoVariantForm({
     if (isNaN(value)) {
       return;
     }
-    onUpdateField({ fieldName: 'scaledWidth', value: value || '' });
+    onUpdateField({ fieldName: 'scaledWidth', value: value || 0 });
   };
   const handleScaledHeightChanged = (args: UpdateArgs) => {
     const value = Number(args.value);
@@ -54,7 +55,7 @@ export default function VideoVariantForm({
     if (isNaN(value)) {
       return;
     }
-    onUpdateField({ fieldName: 'scaledHeight', value: value || '' });
+    onUpdateField({ fieldName: 'scaledHeight', value: value || 0 });
   };
 
   // Video passthrough handling
@@ -67,6 +68,10 @@ export default function VideoVariantForm({
     if (videoPassthroughEnabled) {
       onUpdateField({ fieldName: 'videoPassthrough', value });
     }
+  };
+
+  const handleNameChanged = (args: UpdateArgs) => {
+    onUpdateField({ fieldName: 'name', value: args.value });
   };
 
   // Slider notes
@@ -104,7 +109,11 @@ export default function VideoVariantForm({
   return (
     <div className={classes}>
       <p className="description">
-        <a href="https://owncast.online/docs/video" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://owncast.online/docs/video?source=admin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Learn more
         </a>{' '}
         about how each of these settings can impact the performance of your server.
@@ -118,6 +127,12 @@ export default function VideoVariantForm({
       )}
 
       <Row gutter={16}>
+        <TextField
+          maxLength="10"
+          {...VIDEO_NAME_DEFAULTS}
+          value={dataState.name}
+          onChange={handleNameChanged}
+        />
         <Col sm={24} md={12}>
           {/* ENCODER PRESET (CPU USAGE) FIELD */}
           <div className="form-module cpu-usage-container">
@@ -140,7 +155,7 @@ export default function VideoVariantForm({
             </div>
             <p className="read-more-subtext">
               <a
-                href="https://owncast.online/docs/video/#cpu-usage"
+                href="https://owncast.online/docs/video/#cpu-usage?source=admin"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -175,7 +190,7 @@ export default function VideoVariantForm({
             </div>
             <p className="read-more-subtext">
               <a
-                href="https://owncast.online/docs/video/#bitrate"
+                href="https://owncast.online/docs/video/#bitrate?source=admin"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -196,7 +211,7 @@ export default function VideoVariantForm({
                   to optionally resize your content for this stream output then you should either
                   set the width <strong>or</strong> the height to keep your aspect ratio.{' '}
                   <a
-                    href="https://owncast.online/docs/video/#resolution"
+                    href="https://owncast.online/docs/video/#resolution?source=admin"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -224,7 +239,7 @@ export default function VideoVariantForm({
               {/* VIDEO PASSTHROUGH FIELD */}
               <div className="form-module video-passthrough-module">
                 <Typography.Title level={3}>Video Passthrough</Typography.Title>
-                <p className="description">
+                <div className="description">
                   <p>
                     Enabling video passthrough may allow for less hardware utilization, but may also
                     make your stream <strong>unplayable</strong>.
@@ -235,14 +250,14 @@ export default function VideoVariantForm({
                   </p>
                   <p>
                     <a
-                      href="https://owncast.online/docs/video/#video-passthrough"
+                      href="https://owncast.online/docs/video/#video-passthrough?source=admin"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       Read the documentation before enabling, as it impacts your stream.
                     </a>
                   </p>
-                </p>
+                </div>
                 <Popconfirm
                   disabled={dataState.videoPassthrough === true}
                   title="Did you read the documentation about video passthrough and understand the risks involved with enabling it?"
@@ -287,7 +302,7 @@ export default function VideoVariantForm({
             </div>
             <p className="read-more-subtext">
               <a
-                href="https://owncast.online/docs/video/#framerate"
+                href="https://owncast.online/docs/video/#framerate?source=admin"
                 target="_blank"
                 rel="noopener noreferrer"
               >

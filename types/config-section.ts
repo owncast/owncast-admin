@@ -35,6 +35,7 @@ export interface ConfigInstanceDetailsFields {
   socialHandles: SocialHandle[];
   streamTitle: string;
   summary: string;
+  welcomeMessage: string;
   tags: string[];
   title: string;
 }
@@ -59,6 +60,8 @@ export interface VideoVariant {
 
   scaledWidth: number;
   scaledHeight: number;
+
+  name: string;
 }
 export interface VideoSettingsFields {
   latencyLevel: number;
@@ -77,6 +80,13 @@ export interface S3Field {
   servingEndpoint?: string;
 }
 
+export interface ExternalAction {
+  title: string,
+  description: string;
+  url: string;
+  openExternally: boolean;
+}
+
 export interface ConfigDetails {
   ffmpegPath: string;
   instanceDetails: ConfigInstanceDetailsFields;
@@ -86,4 +96,6 @@ export interface ConfigDetails {
   webServerPort: string;
   yp: ConfigDirectoryFields;
   videoSettings: VideoSettingsFields;
+  chatDisabled: boolean;
+  externalActions: ExternalAction[];
 }

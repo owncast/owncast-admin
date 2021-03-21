@@ -15,6 +15,7 @@ export const API_NSFW_SWITCH = '/nsfw';
 export const API_RTMP_PORT = '/rtmpserverport';
 export const API_S3_INFO = '/s3';
 export const API_SERVER_SUMMARY = '/serversummary';
+export const API_SERVER_WELCOME_MESSAGE = '/welcomemessage';
 export const API_SERVER_NAME = '/name';
 export const API_SOCIAL_HANDLES = '/socialhandles';
 export const API_STREAM_KEY = '/key';
@@ -25,6 +26,8 @@ export const API_VIDEO_SEGMENTS = '/video/streamlatencylevel';
 export const API_VIDEO_VARIANTS = '/video/streamoutputvariants';
 export const API_WEB_PORT = '/webserverport';
 export const API_YP_SWITCH = '/directoryenabled';
+export const API_CHAT_DISABLE = '/chat/disable';
+export const API_EXTERNAL_ACTIONS = '/externalactions'
 
 export async function postConfigUpdateToAPI(args: ApiPostArgs) {
   const { apiPath, data, onSuccess, onError } = args;
@@ -61,6 +64,14 @@ export const TEXTFIELD_PROPS_SERVER_SUMMARY = {
   placeholder: '',
   label: 'About',
   tip: 'A brief blurb about you, your server, or what your stream is about.',
+};
+export const TEXTFIELD_PROPS_SERVER_WELCOME_MESSAGE = {
+  apiPath: API_SERVER_WELCOME_MESSAGE,
+  maxLength: 500,
+  placeholder: '',
+  label: 'Welcome Message',
+  tip:
+    'A system chat message sent to viewers when they first connect to chat. Leave blank to disable.',
 };
 export const TEXTFIELD_PROPS_LOGO = {
   apiPath: API_LOGO,
@@ -156,6 +167,15 @@ export const DEFAULT_VARIANT_STATE: VideoVariant = {
   cpuUsageLevel: 3,
   scaledHeight: null,
   scaledWidth: null,
+  name: '',
+};
+
+export const FIELD_PROPS_DISABLE_CHAT = {
+  apiPath: API_CHAT_DISABLE,
+  configPath: 'chatDisabled',
+  label: 'Disable chat',
+  tip: 'Hide the web chat interface.',
+  useSubmit: true,
 };
 
 export const VIDEO_VARIANT_SETTING_DEFAULTS = {
@@ -223,6 +243,15 @@ export const VIDEO_BITRATE_DEFAULTS = {
   incrementBy: 100,
   tip: 'The overall quality of your stream is generally impacted most by bitrate.',
 };
+
+export const VIDEO_NAME_DEFAULTS = {
+  fieldName: 'name',
+  label: 'Name',
+  maxLength: 12,
+  placeholder: 'HD or Low',
+  tip: 'Human-readable name for for displaying in the quality selector.',
+};
+
 export const VIDEO_BITRATE_SLIDER_MARKS = {
   [VIDEO_BITRATE_DEFAULTS.min]: `${VIDEO_BITRATE_DEFAULTS.min} ${VIDEO_BITRATE_DEFAULTS.unit}`,
   3000: 3000,

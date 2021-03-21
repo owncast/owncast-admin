@@ -92,7 +92,7 @@ export default function MainLayout(props) {
     : '';
   const currentThumbnail = online ? (
     <img
-      src="http://localhost:8080/thumbnail.jpg"
+      src="/thumbnail.jpg"
       className="online-thumbnail"
       alt="current thumbnail"
       style={{ width: '10rem' }}
@@ -182,6 +182,9 @@ export default function MainLayout(props) {
             <Menu.Item key="access-tokens">
               <Link href="/access-tokens">Access Tokens</Link>
             </Menu.Item>
+            <Menu.Item key="actions">
+              <Link href="/actions">External Actions</Link>
+            </Menu.Item>
           </SubMenu>
           <Menu.Item key="help" icon={<QuestionCircleOutlined />} title="Help">
             <Link href="/help">Help</Link>
@@ -210,7 +213,7 @@ export default function MainLayout(props) {
         <Content className="main-content-container">{children}</Content>
 
         <Footer className="footer-container">
-          <a href="https://owncast.online/" target="_blank" rel="noopener noreferrer">
+          <a href="https://owncast.online/?source=admin" target="_blank" rel="noopener noreferrer">
             About Owncast v{versionNumber}
           </a>
         </Footer>

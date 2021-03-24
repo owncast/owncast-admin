@@ -37,7 +37,7 @@ export default function EditInstanceDetails() {
       ...instanceDetails,
       ...yp,
     });
-  }, [instanceDetails, yp]);
+  }, [instanceDetails]);
 
   if (!formDataValues) {
     return null;

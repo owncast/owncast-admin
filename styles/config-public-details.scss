@@ -62,6 +62,15 @@
       height: 6em !important;
     }
   }
+
+  .edit-custom-css {
+    #field-customStyles {
+      height: 15em;
+      width: 100%;
+      font-family: monospace;
+      resize: auto;
+    }
+  }
 }
 
 .other-field-container {

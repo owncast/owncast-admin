@@ -1,6 +1,7 @@
 // DEFAULT VALUES
 import { fetchData, SERVER_CONFIG_UPDATE_URL } from './apis';
 import { ApiPostArgs, VideoVariant, SocialHandle } from '../types/config-section';
+import { TEXTFIELD_TYPE_URL } from '../components/config/form-textfield';
 
 export const TEXT_MAXLENGTH = 255;
 
@@ -313,7 +314,9 @@ export const S3_TEXT_FIELDS_INFO = {
     label: 'Endpoint',
     maxLength: 255,
     placeholder: 'https://your.s3.provider.endpoint.com',
-    tip: 'The full URL endpoint your storage provider gave you.',
+    tip: 'The full URL (with "https://") endpoint from your storage provider.',
+    type: TEXTFIELD_TYPE_URL,
+    pattern: 'https://.*', // default pattern for `type=url` fields only checks for `:`
   },
   region: {
     fieldName: 'region',

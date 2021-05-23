@@ -22,6 +22,7 @@ export interface TextFieldProps {
   disabled?: boolean;
   label?: string;
   maxLength?: number;
+  pattern?: string;
   placeholder?: string;
   required?: boolean;
   status?: StatusState;
@@ -42,6 +43,7 @@ export default function TextField(props: TextFieldProps) {
     onBlur,
     onChange,
     onPressEnter,
+    pattern,
     placeholder,
     required,
     status,
@@ -100,6 +102,7 @@ export default function TextField(props: TextFieldProps) {
   } else if (type === TEXTFIELD_TYPE_URL) {
     fieldProps = {
       type: 'url',
+      pattern,
     };
   }
 
@@ -114,6 +117,7 @@ export default function TextField(props: TextFieldProps) {
     required,
     [`status-${statusType}`]: status,
   });
+
   return (
     <div className={containerClass}>
       {label ? (
@@ -130,7 +134,7 @@ export default function TextField(props: TextFieldProps) {
             id={fieldId}
             className={`field ${className} ${fieldId}`}
             {...fieldProps}
-            allowClear
+            {...(type !== TEXTFIELD_TYPE_NUMBER && { allowClear: true })}
             placeholder={placeholder}
             maxLength={maxLength}
             onChange={handleChange}

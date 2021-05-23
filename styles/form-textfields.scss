@@ -67,6 +67,15 @@ Base styles for
     margin: .5em .5em;
   }
 
+  input {
+    &:not(:focus) {
+      &:invalid  {
+        color: var(--ant-error);
+      }  
+    }
+  }
+
+
   @media (max-width: 800px) {
     flex-wrap: wrap;
     .label-side {

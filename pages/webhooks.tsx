@@ -13,7 +13,7 @@ import {
   Col,
 } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
-import isValidUrl from '../utils/urls';
+import isValidUrl, { DEFAULT_TEXTFIELD_URL_PATTERN } from '../utils/urls';
 
 import { fetchData, DELETE_WEBHOOK, CREATE_WEBHOOK, WEBHOOKS } from '../utils/apis';
 
@@ -101,7 +101,9 @@ function NewWebhookModal(props: Props) {
         <Input
           value={webhookUrl}
           placeholder="https://myserver.com/webhook"
-          onChange={input => setWebhookUrl(input.currentTarget.value)}
+          onChange={input => setWebhookUrl(input.currentTarget.value.trim())}
+          type="url"
+          pattern={DEFAULT_TEXTFIELD_URL_PATTERN}
         />
       </div>
 

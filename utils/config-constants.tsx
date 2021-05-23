@@ -2,6 +2,7 @@
 import { fetchData, SERVER_CONFIG_UPDATE_URL } from './apis';
 import { ApiPostArgs, VideoVariant, SocialHandle } from '../types/config-section';
 import { TEXTFIELD_TYPE_URL } from '../components/config/form-textfield';
+import { DEFAULT_TEXTFIELD_URL_PATTERN } from './urls';
 
 export const TEXT_MAXLENGTH = 255;
 
@@ -132,6 +133,9 @@ export const TEXTFIELD_PROPS_INSTANCE_URL = {
   placeholder: 'https://owncast.mysite.com',
   label: 'Server URL',
   tip: 'The full url to your Owncast server.',
+  type: TEXTFIELD_TYPE_URL,
+  pattern: DEFAULT_TEXTFIELD_URL_PATTERN,
+  useTrim: true,
 };
 // MISC FIELDS
 export const FIELD_PROPS_TAGS = {
@@ -315,8 +319,9 @@ export const S3_TEXT_FIELDS_INFO = {
     maxLength: 255,
     placeholder: 'https://your.s3.provider.endpoint.com',
     tip: 'The full URL (with "https://") endpoint from your storage provider.',
+    useTrim: true,
     type: TEXTFIELD_TYPE_URL,
-    pattern: 'https://.*', // default pattern for `type=url` fields only checks for `:`
+    pattern: DEFAULT_TEXTFIELD_URL_PATTERN, 
   },
   region: {
     fieldName: 'region',
@@ -339,5 +344,8 @@ export const S3_TEXT_FIELDS_INFO = {
     placeholder: 'http://cdn.ss3.provider.endpoint.com',
     tip:
       'Optional URL that content should be accessed from instead of the default.  Used with CDNs and specific storage providers. Generally not required.',
+    type: TEXTFIELD_TYPE_URL,
+    pattern: DEFAULT_TEXTFIELD_URL_PATTERN,
+    useTrim: true,
   },
 };

@@ -28,6 +28,7 @@ export interface TextFieldProps {
   status?: StatusState;
   tip?: string;
   type?: string;
+  useTrim?: boolean;
   value?: string | number;
   onBlur?: FieldUpdaterFunc;
   onChange?: FieldUpdaterFunc;
@@ -49,15 +50,15 @@ export default function TextField(props: TextFieldProps) {
     status,
     tip,
     type,
+    useTrim,
     value,
   } = props;
 
-  // if field is required but value is empty, or equals initial value, then don't show submit/update button. otherwise clear out any result messaging and display button.
   const handleChange = (e: any) => {
-    const val = type === TEXTFIELD_TYPE_NUMBER ? e : e.target.value;
     // if an extra onChange handler was sent in as a prop, let's run that too.
     if (onChange) {
-      onChange({ fieldName, value: val });
+      const val = type === TEXTFIELD_TYPE_NUMBER ? e : e.target.value;
+      onChange({ fieldName, value: useTrim ? val.trim() : val });
     }
   };
 

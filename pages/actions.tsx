@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Table, Space, Button, Modal, Checkbox, Input, Typography } from 'antd';
 import { ServerStatusContext } from '../utils/server-status-context';
 import { DeleteOutlined } from '@ant-design/icons';
-import isValidUrl from '../utils/urls';
+import isValidUrl, { DEFAULT_TEXTFIELD_URL_PATTERN } from '../utils/urls';
 import FormStatusIndicator from '../components/config/form-status-indicator';
 import {
   createInputStatus,
@@ -91,7 +91,9 @@ function NewActionModal(props: Props) {
             value={actionUrl}
             required
             placeholder="https://myserver.com/action (required)"
-            onChange={input => setActionUrl(input.currentTarget.value)}
+            onChange={input => setActionUrl(input.currentTarget.value.trim())}
+            type="url"
+            pattern={DEFAULT_TEXTFIELD_URL_PATTERN}
           />
         </p>
         <p>

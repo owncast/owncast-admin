@@ -247,7 +247,7 @@ export const VIDEO_BITRATE_DEFAULTS = {
 export const VIDEO_NAME_DEFAULTS = {
   fieldName: 'name',
   label: 'Name',
-  maxLength: 12,
+  maxLength: 15,
   placeholder: 'HD or Low',
   tip: 'Human-readable name for for displaying in the player.',
 };

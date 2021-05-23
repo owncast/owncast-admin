@@ -73,7 +73,6 @@ export default function EditSocialLinks() {
 
   useEffect(() => {
     if (instanceDetails.socialHandles) {
-      console.log(initialSocialHandles)
       setCurrentSocialHandles(initialSocialHandles);
     }
   }, [instanceDetails]);

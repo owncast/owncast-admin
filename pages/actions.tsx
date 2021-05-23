@@ -295,7 +295,7 @@ export default function Actions() {
           rel="noopener noreferrer">our documentation</a>.
       </Paragraph>
 
-      <Table rowKey="id" columns={columns} dataSource={actions} pagination={false} />
+      <Table rowKey={record => record.title} columns={columns} dataSource={actions} pagination={false} />
       <br />
       <Button type="primary" onClick={showCreateModal}>
         Create New Action

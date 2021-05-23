@@ -39,16 +39,3 @@ export function parseSecondsToDurationString(seconds = 0) {
 
   return daysString + hoursString + minString + secsString;
 }
-
-// add unique React `key`s to dataSources for `<Table>` rows, based on specified field, if one does not exist
-export function createDataKeys(data: any[], field: string) {
-  return data.map((item: any, index: number) => {
-    if (item.key) {
-      return item;
-    }
-    return {
-      ...item,
-      key: `${item[field] && item[field] || 'item'}-${index}`,
-    }
-  });
-}

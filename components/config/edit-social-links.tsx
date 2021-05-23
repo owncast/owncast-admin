@@ -18,6 +18,7 @@ import TextField from './form-textfield';
 import { createInputStatus, STATUS_ERROR, STATUS_SUCCESS } from '../../utils/input-statuses';
 import FormStatusIndicator from './form-status-indicator';
 import { NEXT_PUBLIC_API_HOST } from '../../utils/apis';
+import { createDataKeys } from '../../utils/format';
 
 const { Title } = Typography;
 
@@ -72,6 +73,7 @@ export default function EditSocialLinks() {
 
   useEffect(() => {
     if (instanceDetails.socialHandles) {
+      console.log(initialSocialHandles)
       setCurrentSocialHandles(initialSocialHandles);
     }
   }, [instanceDetails]);
@@ -173,8 +175,17 @@ export default function EditSocialLinks() {
       render: (data, record) => {
         const { platform, url } = record;
         const platformInfo = availableIconsList.find(item => item.key === platform);
+
+        // custom platform case
         if (!platformInfo) {
-          return platform;
+          return (
+            <div className="social-handle-cell">
+              <p className="option-label">
+                <strong>{platform}</strong>
+                <span className="handle-url" title={url}>{url}</span>
+              </p>
+            </div>
+          );
         }
         const { icon, platform: platformName } = platformInfo;
         const iconUrl = NEXT_PUBLIC_API_HOST + `${icon.slice(1)}`;
@@ -251,7 +262,7 @@ export default function EditSocialLinks() {
         className="social-handles-table"
         pagination={false}
         size="small"
-        rowKey={record => record.url}
+        rowKey={record => record.platform}
         columns={socialHandlesColumns}
         dataSource={currentSocialHandles}
       />

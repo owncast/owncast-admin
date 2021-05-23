@@ -227,7 +227,7 @@ export default function Webhooks() {
         .
       </Paragraph>
 
-      <Table rowKey="id" columns={columns} dataSource={webhooks} pagination={false} />
+      <Table rowKey={record => record.id} columns={columns} dataSource={webhooks} pagination={false} />
       <br />
       <Button type="primary" onClick={showCreateModal}>
         Create Webhook

@@ -86,7 +86,11 @@ function NewWebhookModal(props: Props) {
   };
 
   const checkboxes = events.map(function (singleEvent) {
-    return (<Col span={8} key={singleEvent.value}><Checkbox value={singleEvent.value}>{singleEvent.label}</Checkbox></Col>)
+    return (
+      <Col span={8} key={singleEvent.value}>
+        <Checkbox value={singleEvent.value}>{singleEvent.label}</Checkbox>
+      </Col>
+    );
   });
 
   return (
@@ -109,9 +113,7 @@ function NewWebhookModal(props: Props) {
 
       <p>Select the events that will be sent to this webhook.</p>
       <Checkbox.Group style={{ width: '100%' }} value={selectedEvents} onChange={onChange}>
-        <Row>
-          {checkboxes}
-        </Row>
+        <Row>{checkboxes}</Row>
       </Checkbox.Group>
       <p>
         <Button type="primary" onClick={selectAll}>
@@ -227,7 +229,12 @@ export default function Webhooks() {
         .
       </Paragraph>
 
-      <Table rowKey={record => record.id} columns={columns} dataSource={webhooks} pagination={false} />
+      <Table
+        rowKey={record => record.id}
+        columns={columns}
+        dataSource={webhooks}
+        pagination={false}
+      />
       <br />
       <Button type="primary" onClick={showCreateModal}>
         Create Webhook

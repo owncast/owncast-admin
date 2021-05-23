@@ -41,12 +41,12 @@ function NewActionModal(props: Props) {
 
   function save() {
     onOk(actionUrl, actionTitle, actionDescription, actionIcon, actionColor, openExternally);
-    setActionUrl('')
-    setActionTitle('')
-    setActionDescription('')
-    setActionIcon('')
-    setActionColor('')
-    setOpenExternally(false)
+    setActionUrl('');
+    setActionTitle('');
+    setActionDescription('');
+    setActionIcon('');
+    setActionColor('');
+    setOpenExternally(false);
   }
 
   function canSave(): Boolean {
@@ -186,7 +186,7 @@ export default function Actions() {
       dataIndex: 'icon',
       key: 'icon',
       render: (url: string) => {
-        return url ? <img style={{width: '2vw'}} src={url} /> : null;
+        return url ? <img style={{ width: '2vw' }} src={url} /> : null;
       },
     },
     {
@@ -291,11 +291,22 @@ export default function Actions() {
       </Paragraph>
       <Paragraph>
         Read more about how to use actions, with examples, at{' '}
-        <a href="https://owncast.online/thirdparty/?source=admin" target="_blank"
-          rel="noopener noreferrer">our documentation</a>.
+        <a
+          href="https://owncast.online/thirdparty/?source=admin"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          our documentation
+        </a>
+        .
       </Paragraph>
 
-      <Table rowKey={record => `${record.title}-${record.url}`} columns={columns} dataSource={actions} pagination={false} />
+      <Table
+        rowKey={record => `${record.title}-${record.url}`}
+        columns={columns}
+        dataSource={actions}
+        pagination={false}
+      />
       <br />
       <Button type="primary" onClick={showCreateModal}>
         Create New Action

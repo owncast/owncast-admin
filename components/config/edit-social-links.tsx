@@ -18,7 +18,6 @@ import TextField from './form-textfield';
 import { createInputStatus, STATUS_ERROR, STATUS_SUCCESS } from '../../utils/input-statuses';
 import FormStatusIndicator from './form-status-indicator';
 import { NEXT_PUBLIC_API_HOST } from '../../utils/apis';
-import { createDataKeys } from '../../utils/format';
 
 const { Title } = Typography;
 
@@ -61,6 +60,10 @@ export default function EditSocialLinks() {
       console.log(error);
       //  do nothing
     }
+  };
+
+  const isPredefinedSocial = (platform: string) => {
+    return availableIconsList.find(item => item.key === platform) || false;
   };
 
   const selectedOther =
@@ -173,7 +176,7 @@ export default function EditSocialLinks() {
       key: 'combo',
       render: (data, record) => {
         const { platform, url } = record;
-        const platformInfo = availableIconsList.find(item => item.key === platform);
+        const platformInfo = isPredefinedSocial(platform);
 
         // custom platform case
         if (!platformInfo) {
@@ -211,9 +214,13 @@ export default function EditSocialLinks() {
           <Button
             size="small"
             onClick={() => {
+              const platformInfo = currentSocialHandles[index];
               setEditId(index);
-              setModalDataState({ ...currentSocialHandles[index] });
+              setModalDataState({ ...platformInfo });
               setDisplayModal(true);
+              if (!isPredefinedSocial(platformInfo.platform)) {
+                setDisplayOther(true);
+              }
             }}
           >
             Edit
@@ -261,7 +268,7 @@ export default function EditSocialLinks() {
         className="social-handles-table"
         pagination={false}
         size="small"
-        rowKey={record => record.platform}
+        rowKey={record => `${record.platform}-${record.url}`}
         columns={socialHandlesColumns}
         dataSource={currentSocialHandles}
       />

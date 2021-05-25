@@ -7,7 +7,6 @@ import { ServerStatusContext } from '../../utils/server-status-context';
 import {
   postConfigUpdateToAPI,
   RESET_TIMEOUT,
-  TEXTFIELD_PROPS_LOGO,
 } from '../../utils/config-constants';
 import {
   createInputStatus,
@@ -26,19 +25,24 @@ function getBase64(img: File | Blob, callback: (imageUrl: string | ArrayBuffer) 
   reader.readAsDataURL(img);
 }
 
-export default function EditLogo() {
-  const [logoUrl, setlogoUrl] = useState(null);
+interface ImageFieldWithSubmitProps {
+  apiPath: string;
+  fieldName: string;
+  tip: string;
+  label: string;
+}
+
+export default function ImageField(props: ImageFieldWithSubmitProps) {
+  const [imageURL, setImageURL] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [logoCachedbuster, setLogoCacheBuster] = useState(0);
+  const [imageCachebuster, setImageCachebuster] = useState(0);
 
   const serverStatusData = useContext(ServerStatusContext);
   const { setFieldInConfigState, serverConfig } = serverStatusData || {};
-  const currentLogo = serverConfig?.instanceDetails?.logo;
+  const currentImage = serverConfig?.instanceDetails?.[props.fieldName];
 
   const [submitStatus, setSubmitStatus] = useState<StatusState>(null);
   let resetTimer = null;
-
-  const { apiPath, tip } = TEXTFIELD_PROPS_LOGO;
 
   // Clear out any validation states and messaging
   const resetStates = () => {
@@ -62,25 +66,25 @@ export default function EditLogo() {
       }
 
       getBase64(file, (url: string) => {
-        setlogoUrl(url);
+        setImageURL(url);
         return res();
       });
     });
   };
 
-  // Post new logo to api
-  const handleLogoUpdate = async () => {
-    if (logoUrl !== currentLogo) {
+  // Post new image to api
+  const handleImageUpdate = async () => {
+    if (imageURL !== currentImage) {
       setSubmitStatus(createInputStatus(STATUS_PROCESSING));
 
       await postConfigUpdateToAPI({
-        apiPath,
-        data: { value: logoUrl },
+        apiPath: props.apiPath,
+        data: { value: imageURL },
         onSuccess: () => {
-          setFieldInConfigState({ fieldName: 'logo', value: logoUrl, path: '' });
+          setFieldInConfigState({ fieldName: props.fieldName, value: imageURL, path: '' });
           setSubmitStatus(createInputStatus(STATUS_SUCCESS));
           setLoading(false);
-          setLogoCacheBuster(Math.floor(Math.random() * 100)); // Force logo to re-load
+          setImageCachebuster(Math.floor(Math.random() * 100)); // Force image to re-load
         },
         onError: (msg: string) => {
           setSubmitStatus(createInputStatus(STATUS_ERROR, `There was an error: ${msg}`));
@@ -91,25 +95,25 @@ export default function EditLogo() {
     }
   };
 
-  const logoDisplayUrl = NEXT_PUBLIC_API_HOST + 'logo?random=' + logoCachedbuster;
+  const imageDisplayUrl = NEXT_PUBLIC_API_HOST + props.fieldName + '?random=' + imageCachebuster;
 
   return (
     <div className="formfield-container logo-upload-container">
       <div className="label-side">
-        <span className="formfield-label">Logo</span>
+        <span className="formfield-label">{props.label}</span>
       </div>
 
       <div className="input-side">
         <div className="input-group">
-          <img src={logoDisplayUrl} alt="avatar" className="logo-preview" />
+          <img src={imageDisplayUrl} alt="avatar" className="logo-preview" />
           <Upload
-            name="logo"
+            name={props.fieldName}
             listType="picture"
             className="avatar-uploader"
             showUploadList={false}
             accept={ACCEPTED_FILE_TYPES.join(',')}
             beforeUpload={beforeUpload}
-            customRequest={handleLogoUpdate}
+            customRequest={handleImageUpdate}
             disabled={loading}
           >
             {loading ? (
@@ -120,7 +124,7 @@ export default function EditLogo() {
           </Upload>
         </div>
         <FormStatusIndicator status={submitStatus} />
-        <p className="field-tip">{tip}</p>
+        <p className="field-tip">{props.tip}</p>
       </div>
     </div>
   );

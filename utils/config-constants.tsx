@@ -14,6 +14,7 @@ export const API_CUSTOM_CSS_STYLES = '/customstyles';
 export const API_FFMPEG = '/ffmpegpath';
 export const API_INSTANCE_URL = '/serverurl';
 export const API_LOGO = '/logo';
+export const API_OFFLINE_STREAM_IMAGE = '/offlineStreamImage';
 export const API_NSFW_SWITCH = '/nsfw';
 export const API_RTMP_PORT = '/rtmpserverport';
 export const API_S3_INFO = '/s3';
@@ -80,13 +81,19 @@ export const TEXTFIELD_PROPS_SERVER_WELCOME_MESSAGE = {
   label: 'Welcome Message',
   tip: 'A system chat message sent to viewers when they first connect to chat. Leave blank to disable.',
 };
-export const TEXTFIELD_PROPS_LOGO = {
+export const IMAGEFIELD_PROPS_LOGO = {
   apiPath: API_LOGO,
-  configPath: 'instanceDetails',
-  maxLength: 255,
+  fieldName: 'logo',
   placeholder: '/img/mylogo.png',
   label: 'Logo',
   tip: 'Upload your logo if you have one. We recommend that you use a square image that is at least 256x256.',
+};
+export const IMAGEFIELD_PROPS_OFFLINE_STREAM_IMAGE = {
+  apiPath: API_OFFLINE_STREAM_IMAGE,
+  fieldName: 'offlineStreamImage',
+  placeholder: '/img/static.gif',
+  label: 'Offline Stream Image',
+  tip: 'Upload an image to take the place of your stream when you are offline.',
 };
 export const TEXTFIELD_PROPS_STREAM_KEY = {
   apiPath: API_STREAM_KEY,

@@ -13,6 +13,8 @@ import {
   TEXTFIELD_PROPS_SERVER_NAME,
   TEXTFIELD_PROPS_SERVER_SUMMARY,
   TEXTFIELD_PROPS_SERVER_WELCOME_MESSAGE,
+  IMAGEFIELD_PROPS_LOGO,
+  IMAGEFIELD_PROPS_OFFLINE_STREAM_IMAGE,
   API_YP_SWITCH,
   FIELD_PROPS_YP,
   FIELD_PROPS_NSFW,
@@ -20,7 +22,8 @@ import {
 
 import { UpdateArgs } from '../../types/config-section';
 import ToggleSwitch from './form-toggleswitch';
-import EditLogo from './edit-logo';
+import EditLogo from './form-imagefield';
+import ImageField from './form-imagefield';
 
 const { Title } = Typography;
 
@@ -107,7 +110,10 @@ export default function EditInstanceDetails() {
       />
 
       {/* Logo section */}
-      <EditLogo />
+      <ImageField {...IMAGEFIELD_PROPS_LOGO} />
+
+
+      <ImageField {...IMAGEFIELD_PROPS_OFFLINE_STREAM_IMAGE} />
 
       <br />
       <p className="description">

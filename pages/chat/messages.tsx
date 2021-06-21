@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Typography, Tooltip, Button } from 'antd';
+import { Table, Typography, Button } from 'antd';
 import { CheckCircleFilled, ExclamationCircleFilled } from '@ant-design/icons';
 import classNames from 'classnames';
 import { ColumnsType } from 'antd/es/table';
 import format from 'date-fns/format';
 
-import { CHAT_HISTORY, fetchData, FETCH_INTERVAL, UPDATE_CHAT_MESSGAE_VIZ } from '../../utils/apis';
-import { MessageType } from '../../types/chat';
-import { isEmptyObject } from '../../utils/format';
-import MessageVisiblityToggle from '../../components/message-visiblity-toggle';
+import { CHAT_HISTORY, fetchData, FETCH_INTERVAL, UPDATE_CHAT_MESSGAE_VIZ } from '../utils/apis';
+import { MessageType } from '../types/chat';
+import { isEmptyObject } from '../utils/format';
+import MessageVisiblityToggle from '../components/message-visiblity-toggle';
+import UserPopover from '../components/user-popover';
 
 const { Title } = Typography;
 
 function createUserNameFilters(messages: MessageType[]) {
   const filtered = messages.reduce((acc, curItem) => {
-    const curAuthor = curItem.author;
+    const curAuthor = curItem.user.id;
     if (!acc.some(item => item.text === curAuthor)) {
       acc.push({ text: curAuthor, value: curAuthor });
     }
@@ -149,19 +150,23 @@ export default function Chat() {
     },
     {
       title: 'User',
-      dataIndex: 'author',
-      key: 'author',
+      dataIndex: 'user',
+      key: 'user',
       className: 'name-col',
       filters: nameFilters,
-      onFilter: (value, record) => record.author === value,
-      sorter: (a, b) => a.author.localeCompare(b.author),
+      onFilter: (value, record) => record.user.id === value,
+      sorter: (a, b) => a.user.displayName.localeCompare(b.user.displayName),
       sortDirections: ['ascend', 'descend'],
       ellipsis: true,
-      render: author => (
-        <Tooltip placement="topLeft" title={author}>
-          {author}
-        </Tooltip>
-      ),
+      render: user => {
+        const { displayName } = user;
+        return (
+          <UserPopover user={user}>{displayName}</UserPopover>
+          // <Popover content={popoverContent} title={displayName}>
+          //   {displayName}
+          // </Popover>
+        );
+      },
       width: 110,
     },
     {
@@ -237,7 +242,7 @@ export default function Chat() {
         className="messages-table"
         pagination={{ pageSize: 100 }}
         scroll={{ y: 540 }}
-        rowClassName={record => (!record.visible ? 'hidden' : '')}
+        rowClassName={record => (record.hiddenAt ? 'hidden' : '')}
         dataSource={messages}
         columns={chatColumns}
         rowKey={row => row.id}

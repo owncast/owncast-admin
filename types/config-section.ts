@@ -89,7 +89,6 @@ export interface ExternalAction {
 }
 
 export interface ConfigDetails {
-  chatDisabled: boolean;
   externalActions: ExternalAction[];
   ffmpegPath: string;
   instanceDetails: ConfigInstanceDetailsFields;
@@ -102,4 +101,5 @@ export interface ConfigDetails {
   supportedCodecs: string[];
   videoCodec: string;
   usernameBlocklist: string;
+  chatDisabled: boolean;
 }

@@ -25,7 +25,6 @@ export const initialServerConfigState: ConfigDetails = {
   ffmpegPath: '',
   rtmpServerPort: '',
   webServerPort: '',
-  chatDisabled: false,
   s3: {
     accessKey: '',
     acl: '',
@@ -49,6 +48,7 @@ export const initialServerConfigState: ConfigDetails = {
   supportedCodecs: [],
   videoCodec: '',
   usernameBlocklist: '',
+  chatDisabled: false,
 };
 
 const initialServerStatusState = {
@@ -62,6 +62,7 @@ const initialServerStatusState = {
   overallPeakViewerCount: 0,
   versionNumber: '0.0.0',
   streamTitle: '',
+  chatDisabled: false,
 };
 
 export const ServerStatusContext = React.createContext({

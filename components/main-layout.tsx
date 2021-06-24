@@ -78,8 +78,7 @@ export default function MainLayout(props) {
   const upgradeMenuItemStyle = upgradeVersion ? 'block' : 'none';
   const upgradeVersionString = `${upgradeVersion}` || '';
   const upgradeMessage = `Upgrade to v${upgradeVersionString}`;
-
-  const chatMenuItemStyle = 'block'; // upgradeVersion ? 'block' : 'none';
+  const chatMenuItemStyle = !serverConfig.chatDisabled ? 'block' : 'none';
 
   const clearAlertMessage = () => {
     alertMessage.setMessage(null);
@@ -129,7 +128,7 @@ export default function MainLayout(props) {
       <Sider width={240} className="side-nav">
         <Menu
           defaultSelectedKeys={[route.substring(1) || 'home']}
-          defaultOpenKeys={['current-stream-menu', 'utilities-menu', 'configuration']}
+          defaultOpenKeys={[]}
           mode="inline"
           className="menu-container"
         >

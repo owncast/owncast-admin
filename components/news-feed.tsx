@@ -25,7 +25,7 @@ function ArticleItem({ title, url, content_html: content, date_published: date }
   return (
     <article>
       <Collapse>
-        <Panel header={title}>
+        <Panel header={title} key={url}>
           <p className="timestamp">{dateString} (<Link href={`${OWNCAST_BASE_URL}${url}`} target="_blank" rel="noopener noreferrer">Link</Link>)</p>
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </Panel>

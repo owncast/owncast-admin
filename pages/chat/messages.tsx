@@ -5,11 +5,11 @@ import classNames from 'classnames';
 import { ColumnsType } from 'antd/es/table';
 import format from 'date-fns/format';
 
-import { CHAT_HISTORY, fetchData, FETCH_INTERVAL, UPDATE_CHAT_MESSGAE_VIZ } from '../utils/apis';
-import { MessageType } from '../types/chat';
-import { isEmptyObject } from '../utils/format';
-import MessageVisiblityToggle from '../components/message-visiblity-toggle';
-import UserPopover from '../components/user-popover';
+import { CHAT_HISTORY, fetchData, FETCH_INTERVAL, UPDATE_CHAT_MESSGAE_VIZ } from '../../utils/apis';
+import { MessageType } from '../../types/chat';
+import { isEmptyObject } from '../../utils/format';
+import MessageVisiblityToggle from '../../components/message-visiblity-toggle';
+import UserPopover from '../../components/user-popover';
 
 const { Title } = Typography;
 
@@ -160,12 +160,7 @@ export default function Chat() {
       ellipsis: true,
       render: user => {
         const { displayName } = user;
-        return (
-          <UserPopover user={user}>{displayName}</UserPopover>
-          // <Popover content={popoverContent} title={displayName}>
-          //   {displayName}
-          // </Popover>
-        );
+        return <UserPopover user={user}>{displayName}</UserPopover>;
       },
       width: 110,
     },

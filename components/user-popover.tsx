@@ -1,4 +1,4 @@
-import { Popover, Button } from 'antd';
+import { Popover } from 'antd';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import format from 'date-fns/format';
 import { ReactNode } from 'react-markdown';
@@ -14,20 +14,17 @@ interface UserProps {
 }
 
 export default function UserPopover({ user, children }: UserProps) {
-  const { displayName, createdAt, usernameHistory } = user;
-  let lastNameChange = null;
+  const { displayName, createdAt, previousNames, nameChangedAt } = user;
   let lastNameChangeDate = null;
-  if (usernameHistory && usernameHistory.length > 0) {
-    lastNameChange = usernameHistory[0];
-    lastNameChangeDate = new Date(lastNameChange.changedAt);
+  if (previousNames && previousNames.length > 1 && nameChangedAt) {
+    lastNameChangeDate = new Date(nameChangedAt);
   }
 
   const dateObject = new Date(createdAt);
   const dateString = format(dateObject, 'PP pp');
-  const previousNames = usernameHistory ? usernameHistory.map(entry => entry.displayName) : [];
   const previousNamesContent =
     previousNames.length > 1 ? (
-      <div>Also known as {makeAndStringFromArray(previousNames.slice(1))}.</div>
+      <div>Also known as {makeAndStringFromArray(previousNames.slice(0, -1))}.</div>
     ) : null;
   const lastNameChangeDuration = lastNameChangeDate
     ? formatDistanceToNow(lastNameChangeDate)

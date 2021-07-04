@@ -180,16 +180,16 @@ export default function Chat() {
     },
     {
       title: '',
-      dataIndex: 'visible',
-      key: 'visible',
+      dataIndex: 'hiddenAt',
+      key: 'hiddenAt',
       className: 'toggle-col',
       filters: [
         { text: 'Visible messages', value: true },
         { text: 'Hidden messages', value: false },
       ],
       onFilter: (value, record) => record.visible === value,
-      render: (visible, record) => (
-        <MessageVisiblityToggle isVisible={visible} message={record} setMessage={updateMessage} />
+      render: (hiddenAt, record) => (
+        <MessageVisiblityToggle isVisible={!hiddenAt} message={record} setMessage={updateMessage} />
       ),
       width: 30,
     },

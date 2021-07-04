@@ -14,7 +14,8 @@ export interface User {
   displayName: string;
   createdAt: Date;
   disabledAt: Date;
-  usernameHistory: [UsernameHistory];
+  previousNames: [string];
+  nameChangedAt: Date;
 }
 
 export interface UsernameHistory {

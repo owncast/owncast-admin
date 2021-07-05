@@ -176,19 +176,19 @@ export default function AccessTokens() {
       key: 'delete',
       render: (text, record) => (
         <Space size="middle">
-          <Button onClick={() => handleDeleteToken(record.token)} icon={<DeleteOutlined />} />
+          <Button onClick={() => handleDeleteToken(record.accessToken)} icon={<DeleteOutlined />} />
         </Space>
       ),
     },
     {
       title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'displayName',
+      key: 'displayName',
     },
     {
       title: 'Token',
-      dataIndex: 'token',
-      key: 'token',
+      dataIndex: 'accessToken',
+      key: 'accessToken',
       render: text => <Input.Password size="small" bordered={false} value={text} />,
     },
     {

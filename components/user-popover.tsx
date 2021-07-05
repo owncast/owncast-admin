@@ -23,7 +23,7 @@ export default function UserPopover({ user, children }: UserProps) {
   const dateObject = new Date(createdAt);
   const dateString = format(dateObject, 'PP pp');
   const previousNamesContent =
-    previousNames.length > 1 ? (
+    previousNames && previousNames.length > 1 ? (
       <div>Also known as {makeAndStringFromArray(previousNames.slice(0, -1))}.</div>
     ) : null;
   const lastNameChangeDuration = lastNameChangeDate

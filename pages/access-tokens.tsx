@@ -38,7 +38,7 @@ const availableScopes = {
   },
 };
 
-function convertScopeStringToTag(scopeString) {
+function convertScopeStringToTag(scopeString: string) {
   if (!scopeString || !availableScopes[scopeString]) {
     return null;
   }
@@ -195,7 +195,7 @@ export default function AccessTokens() {
       title: 'Scopes',
       dataIndex: 'scopes',
       key: 'scopes',
-      render: scopes => <>{scopes.map(scope => convertScopeStringToTag(scope))}</>,
+      render: ({ map }: string[]) => <>{map(scope => convertScopeStringToTag(scope))}</>,
     },
     {
       title: 'Last Used',

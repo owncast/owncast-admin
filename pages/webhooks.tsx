@@ -35,7 +35,7 @@ const availableEvents = {
   STREAM_STOPPED: { name: 'Stream stopped', description: 'When a stream stops', color: 'cyan' },
 };
 
-function convertEventStringToTag(eventString) {
+function convertEventStringToTag(eventString: string) {
   if (!eventString || !availableEvents[eventString]) {
     return null;
   }
@@ -197,7 +197,7 @@ export default function Webhooks() {
       title: 'Events',
       dataIndex: 'events',
       key: 'events',
-      render: events => <>{events.map(event => convertEventStringToTag(event))}</>,
+      render: ({ map }: string[]) => <>{map(event => convertEventStringToTag(event))}</>,
     },
   ];
 

@@ -23,17 +23,17 @@ const { Title, Paragraph } = Typography;
 const availableScopes = {
   CAN_SEND_SYSTEM_MESSAGES: {
     name: 'System messages',
-    description: 'You can send official messages on behalf of the system',
+    description: 'Can send official messages on behalf of the system.',
     color: 'purple',
   },
   CAN_SEND_MESSAGES: {
     name: 'User chat messages',
-    description: 'You can send messages on behalf of a username',
+    description: 'Can send chat messages on behalf of the owner of this token.',
     color: 'green',
   },
   HAS_ADMIN_ACCESS: {
     name: 'Has admin access',
-    description: 'Can perform administrative actions such as moderation, get server statuses, etc',
+    description: 'Can perform administrative actions such as moderation, get server statuses, etc.',
     color: 'red',
   },
 };
@@ -101,9 +101,12 @@ function NewTokenModal(props: Props) {
       okButtonProps={okButtonProps}
     >
       <p>
+        <p>
+          The name will be displayed as the chat user when sending messages with this access token.
+        </p>
         <Input
           value={name}
-          placeholder="Access token name/description"
+          placeholder="Name of bot, service, or integration"
           onChange={input => setName(input.currentTarget.value)}
         />
       </p>
@@ -131,7 +134,6 @@ export default function AccessTokens() {
 
   function handleError(error) {
     console.error('error', error);
-    alert(error);
   }
 
   async function getAccessTokens() {

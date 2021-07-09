@@ -29,10 +29,10 @@ export const VIEWERS_OVER_TIME = `${API_LOCATION}viewersOverTime`;
 export const CONNECTED_CLIENTS = `${API_LOCATION}clients`;
 
 // Get list of disabled/blocked chat users
-export const DISABLED_USERS = `${API_LOCATION}chat/usersdisabled`;
+export const DISABLED_USERS = `${API_LOCATION}chat/users/disabled`;
 
 // Disable/enable a single user
-export const USER_ENABLED_TOGGLE = `${API_LOCATION}chat/userenabled`;
+export const USER_ENABLED_TOGGLE = `${API_LOCATION}chat/users/setenabled`;
 
 // Get hardware stats
 export const HARDWARE_STATS = `${API_LOCATION}hardwarestats`;

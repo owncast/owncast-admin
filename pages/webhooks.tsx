@@ -128,7 +128,6 @@ export default function Webhooks() {
 
   function handleError(error) {
     console.error('error', error);
-    alert(error);
   }
 
   async function getWebhooks() {

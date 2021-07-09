@@ -1,13 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Table, Typography } from 'antd';
-import { formatDistanceToNow } from 'date-fns';
-import { SortOrder } from 'antd/lib/table/interface';
-
+import { Typography } from 'antd';
 import { ServerStatusContext } from '../../utils/server-status-context';
-
 import { CONNECTED_CLIENTS, fetchData, DISABLED_USERS } from '../../utils/apis';
 import UserTable from '../../components/user-table';
-import { User } from '../../types/chat';
 import ClientTable from '../../components/client-table';
 
 const FETCH_INTERVAL = 10 * 1000; // 10 sec
@@ -45,7 +40,6 @@ export default function ChatUsers() {
     return () => {
       clearInterval(getStatusIntervalId);
     };
-
   }, [online]);
 
   const connectedUsers = online ? (

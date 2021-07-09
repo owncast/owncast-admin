@@ -8,7 +8,6 @@ interface BlockUserButtonProps {
 }
 
 export default function BlockUserButton({ user, enabled }: BlockUserButtonProps) {
-  console.log(enabled)
   async function buttonClicked({ id }) {
     const data = {
       userId: id,

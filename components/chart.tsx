@@ -1,5 +1,5 @@
 import { LineChart } from 'react-chartkick';
-import 'chartkick/chart.js'
+import 'chartkick/chart.js';
 
 import format from 'date-fns/format';
 

@@ -61,9 +61,10 @@ function NewWebhookModal(props: Props) {
   const [selectedEvents, setSelectedEvents] = useState([]);
   const [webhookUrl, setWebhookUrl] = useState('');
 
-  const events = Object.keys(availableEvents).map(key => {
-    return { value: key, label: availableEvents[key].description };
-  });
+  const events = Object.keys(availableEvents).map(key => ({
+    value: key,
+    label: availableEvents[key].description,
+  }));
 
   function onChange(checkedValues) {
     setSelectedEvents(checkedValues);
@@ -85,13 +86,11 @@ function NewWebhookModal(props: Props) {
     disabled: selectedEvents?.length === 0 || !isValidUrl(webhookUrl),
   };
 
-  const checkboxes = events.map(function (singleEvent) {
-    return (
-      <Col span={8} key={singleEvent.value}>
-        <Checkbox value={singleEvent.value}>{singleEvent.label}</Checkbox>
-      </Col>
-    );
-  });
+  const checkboxes = events.map(singleEvent => (
+    <Col span={8} key={singleEvent.value}>
+      <Checkbox value={singleEvent.value}>{singleEvent.label}</Checkbox>
+    </Col>
+  ));
 
   return (
     <Modal
@@ -147,13 +146,7 @@ export default function Webhooks() {
       title: 'Events',
       dataIndex: 'events',
       key: 'events',
-      render: events => (
-        <>
-          {events.map(event => {
-            return convertEventStringToTag(event);
-          })}
-        </>
-      ),
+      render: events => <>{events.map(event => convertEventStringToTag(event))}</>,
     },
   ];
 

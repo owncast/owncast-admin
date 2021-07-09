@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import { Table, Space, Button, Modal, Checkbox, Input, Typography } from 'antd';
-import { ServerStatusContext } from '../utils/server-status-context';
 import { DeleteOutlined } from '@ant-design/icons';
+import { ServerStatusContext } from '../utils/server-status-context';
 import isValidUrl, { DEFAULT_TEXTFIELD_URL_PATTERN } from '../utils/urls';
 import FormStatusIndicator from '../components/config/form-status-indicator';
 import {
@@ -185,30 +185,25 @@ export default function Actions() {
       title: 'Icon',
       dataIndex: 'icon',
       key: 'icon',
-      render: (url: string) => {
-        return url ? <img style={{ width: '2vw' }} src={url} /> : null;
-      },
+      render: (url: string) => (url ? <img style={{ width: '2vw' }} src={url} /> : null),
     },
     {
       title: 'Color',
       dataIndex: 'color',
       key: 'color',
-      render: (color: string) => {
-        return color ? <div style={{ backgroundColor: color, height: '30px' }}>{color}</div> : null;
-      },
+      render: (color: string) =>
+        color ? <div style={{ backgroundColor: color, height: '30px' }}>{color}</div> : null,
     },
     {
       title: 'Opens',
       dataIndex: 'openExternally',
       key: 'openExternally',
-      render: (openExternally: boolean) => {
-        return openExternally ? 'In a new tab' : 'In a modal';
-      },
+      render: (openExternally: boolean) => (openExternally ? 'In a new tab' : 'In a modal'),
     },
   ];
 
   async function handleDelete(action) {
-    let actionsData = [...actions];
+    const actionsData = [...actions];
     const index = actions.findIndex(item => item.url === action.url);
     actionsData.splice(index, 1);
 
@@ -229,7 +224,7 @@ export default function Actions() {
     openExternally: boolean,
   ) {
     try {
-      let actionsData = [...actions];
+      const actionsData = [...actions];
       const updatedActions = actionsData.concat({
         url,
         title,

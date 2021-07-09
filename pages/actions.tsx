@@ -147,60 +147,31 @@ export default function Actions() {
     setActions(externalActions || []);
   }, [externalActions]);
 
-  const columns = [
-    {
-      title: '',
-      key: 'delete',
-      render: (text, record) => (
-        <Space size="middle">
-          <Button onClick={() => handleDelete(record)} icon={<DeleteOutlined />} />
-        </Space>
-      ),
-    },
-    {
-      title: 'Name',
-      dataIndex: 'title',
-      key: 'title',
-    },
-    {
-      title: 'Description',
-      dataIndex: 'description',
-      key: 'description',
-    },
-    {
-      title: 'URL',
-      dataIndex: 'url',
-      key: 'url',
-    },
-    {
-      title: 'Icon',
-      dataIndex: 'icon',
-      key: 'icon',
-      render: (url: string) => (url ? <img style={{ width: '2vw' }} src={url} /> : null),
-    },
-    {
-      title: 'Color',
-      dataIndex: 'color',
-      key: 'color',
-      render: (color: string) =>
-        color ? <div style={{ backgroundColor: color, height: '30px' }}>{color}</div> : null,
-    },
-    {
-      title: 'Opens',
-      dataIndex: 'openExternally',
-      key: 'openExternally',
-      render: (openExternally: boolean) => (openExternally ? 'In a new tab' : 'In a modal'),
-    },
-  ];
+  async function save(actionsData) {
+    await postConfigUpdateToAPI({
+      apiPath: API_EXTERNAL_ACTIONS,
+      data: { value: actionsData },
+      onSuccess: () => {
+        setFieldInConfigState({ fieldName: 'externalActions', value: actionsData, path: '' });
+        setSubmitStatus(createInputStatus(STATUS_SUCCESS, 'Updated.'));
+        resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
+      },
+      onError: (message: string) => {
+        console.log(message);
+        setSubmitStatus(createInputStatus(STATUS_ERROR, message));
+        resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
+      },
+    });
+  }
 
   async function handleDelete(action) {
     const actionsData = [...actions];
     const index = actions.findIndex(item => item.url === action.url);
     actionsData.splice(index, 1);
 
-    setActions(actionsData);
-    save(actionsData);
     try {
+      setActions(actionsData);
+      save(actionsData);
     } catch (error) {
       console.error(error);
     }
@@ -231,23 +202,6 @@ export default function Actions() {
     }
   }
 
-  async function save(actionsData) {
-    await postConfigUpdateToAPI({
-      apiPath: API_EXTERNAL_ACTIONS,
-      data: { value: actionsData },
-      onSuccess: () => {
-        setFieldInConfigState({ fieldName: 'externalActions', value: actionsData, path: '' });
-        setSubmitStatus(createInputStatus(STATUS_SUCCESS, 'Updated.'));
-        resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
-      },
-      onError: (message: string) => {
-        console.log(message);
-        setSubmitStatus(createInputStatus(STATUS_ERROR, message));
-        resetTimer = setTimeout(resetStates, RESET_TIMEOUT);
-      },
-    });
-  }
-
   const showCreateModal = () => {
     setIsModalVisible(true);
   };
@@ -267,6 +221,52 @@ export default function Actions() {
   const handleModalCancelButton = () => {
     setIsModalVisible(false);
   };
+
+  const columns = [
+    {
+      title: '',
+      key: 'delete',
+      render: (text, record) => (
+        <Space size="middle">
+          <Button onClick={() => handleDelete(record)} icon={<DeleteOutlined />} />
+        </Space>
+      ),
+    },
+    {
+      title: 'Name',
+      dataIndex: 'title',
+      key: 'title',
+    },
+    {
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
+    },
+    {
+      title: 'URL',
+      dataIndex: 'url',
+      key: 'url',
+    },
+    {
+      title: 'Icon',
+      dataIndex: 'icon',
+      key: 'icon',
+      render: (url: string) => (url ? <img style={{ width: '2vw' }} src={url} alt="" /> : null),
+    },
+    {
+      title: 'Color',
+      dataIndex: 'color',
+      key: 'color',
+      render: (color: string) =>
+        color ? <div style={{ backgroundColor: color, height: '30px' }}>{color}</div> : null,
+    },
+    {
+      title: 'Opens',
+      dataIndex: 'openExternally',
+      key: 'openExternally',
+      render: (openExternally: boolean) => (openExternally ? 'In a new tab' : 'In a modal'),
+    },
+  ];
 
   return (
     <div>

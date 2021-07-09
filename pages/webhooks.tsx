@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { DeleteOutlined } from '@ant-design/icons';
 import {
+  Button,
+  Checkbox,
+  Col,
+  Input,
+  Modal,
+  Row,
+  Space,
   Table,
   Tag,
-  Space,
-  Button,
-  Modal,
-  Checkbox,
-  Input,
-  Typography,
   Tooltip,
-  Row,
-  Col,
+  Typography,
 } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from 'react';
+import { CREATE_WEBHOOK, DELETE_WEBHOOK, fetchData, WEBHOOKS } from '../utils/apis';
 import isValidUrl, { DEFAULT_TEXTFIELD_URL_PATTERN } from '../utils/urls';
-
-import { fetchData, DELETE_WEBHOOK, CREATE_WEBHOOK, WEBHOOKS } from '../utils/apis';
 
 const { Title, Paragraph } = Typography;
 
@@ -127,29 +126,6 @@ export default function Webhooks() {
   const [webhooks, setWebhooks] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const columns = [
-    {
-      title: '',
-      key: 'delete',
-      render: (text, record) => (
-        <Space size="middle">
-          <Button onClick={() => handleDelete(record.id)} icon={<DeleteOutlined />} />
-        </Space>
-      ),
-    },
-    {
-      title: 'URL',
-      dataIndex: 'url',
-      key: 'url',
-    },
-    {
-      title: 'Events',
-      dataIndex: 'events',
-      key: 'events',
-      render: events => <>{events.map(event => convertEventStringToTag(event))}</>,
-    },
-  ];
-
   function handleError(error) {
     console.error('error', error);
     alert(error);
@@ -201,6 +177,29 @@ export default function Webhooks() {
   const handleModalCancelButton = () => {
     setIsModalVisible(false);
   };
+
+  const columns = [
+    {
+      title: '',
+      key: 'delete',
+      render: (text, record) => (
+        <Space size="middle">
+          <Button onClick={() => handleDelete(record.id)} icon={<DeleteOutlined />} />
+        </Space>
+      ),
+    },
+    {
+      title: 'URL',
+      dataIndex: 'url',
+      key: 'url',
+    },
+    {
+      title: 'Events',
+      dataIndex: 'events',
+      key: 'events',
+      render: events => <>{events.map(event => convertEventStringToTag(event))}</>,
+    },
+  ];
 
   return (
     <div>

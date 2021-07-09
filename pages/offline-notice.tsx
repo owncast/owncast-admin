@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import LogTable from '../components/log-table';
 import OwncastLogo from '../components/logo';
 import NewsFeed from '../components/news-feed';
+import { ConfigDetails } from '../types/config-section';
 import { ServerStatusContext } from '../utils/server-status-context';
 
 const { Paragraph, Text } = Typography;
@@ -22,7 +23,12 @@ function generateStreamURL(serverURL, rtmpServerPort) {
   return `rtmp://${serverURL.replace(/(^\w+:|^)\/\//, '')}:${rtmpServerPort}/live/`;
 }
 
-export default function Offline({ logs = [], config }) {
+type OfflineProps = {
+  logs: any[];
+  config: ConfigDetails;
+};
+
+export default function Offline({ logs = [], config }: OfflineProps) {
   const serverStatusData = useContext(ServerStatusContext);
 
   const { serverConfig } = serverStatusData || {};

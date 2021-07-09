@@ -1,24 +1,15 @@
-// comment
-
-import React, { useState, useEffect, useContext } from 'react';
-import { Table, Space, Button, Modal, Checkbox, Input, Typography } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
-import { ServerStatusContext } from '../utils/server-status-context';
-import isValidUrl, { DEFAULT_TEXTFIELD_URL_PATTERN } from '../utils/urls';
+import { Button, Checkbox, Input, Modal, Space, Table, Typography } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
 import FormStatusIndicator from '../components/config/form-status-indicator';
 import {
-  createInputStatus,
-  StatusState,
-  STATUS_ERROR,
-  STATUS_PROCESSING,
-  STATUS_SUCCESS,
-} from '../utils/input-statuses';
-
-import {
-  postConfigUpdateToAPI,
   API_EXTERNAL_ACTIONS,
+  postConfigUpdateToAPI,
   RESET_TIMEOUT,
 } from '../utils/config-constants';
+import { createInputStatus, STATUS_ERROR, STATUS_SUCCESS } from '../utils/input-statuses';
+import { ServerStatusContext } from '../utils/server-status-context';
+import isValidUrl, { DEFAULT_TEXTFIELD_URL_PATTERN } from '../utils/urls';
 
 const { Title, Paragraph } = Typography;
 let resetTimer = null;

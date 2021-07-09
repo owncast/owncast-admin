@@ -1,15 +1,15 @@
-import Link from 'next/link';
-import { Card, Row, Col, Input, Collapse, Typography } from 'antd';
 import {
-  MessageTwoTone,
-  QuestionCircleTwoTone,
   BookTwoTone,
+  MessageTwoTone,
   PlaySquareTwoTone,
   ProfileTwoTone,
+  QuestionCircleTwoTone,
 } from '@ant-design/icons';
+import { Card, Col, Row, Typography } from 'antd';
+import Link from 'next/link';
 import { useContext } from 'react';
-import OwncastLogo from '../components/logo';
 import LogTable from '../components/log-table';
+import OwncastLogo from '../components/logo';
 import NewsFeed from '../components/news-feed';
 import { ServerStatusContext } from '../utils/server-status-context';
 
@@ -17,7 +17,6 @@ const { Paragraph, Text } = Typography;
 
 const { Title } = Typography;
 const { Meta } = Card;
-const { Panel } = Collapse;
 
 function generateStreamURL(serverURL, rtmpServerPort) {
   return `rtmp://${serverURL.replace(/(^\w+:|^)\/\//, '')}:${rtmpServerPort}/live/`;

@@ -1,19 +1,18 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Typography, Select, Popconfirm } from 'antd';
-import { ServerStatusContext } from '../../utils/server-status-context';
+import { Popconfirm, Select, Typography } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
 import { AlertMessageContext } from '../../utils/alert-message-context';
 import {
   API_VIDEO_CODEC,
-  RESET_TIMEOUT,
   postConfigUpdateToAPI,
+  RESET_TIMEOUT,
 } from '../../utils/config-constants';
 import {
   createInputStatus,
   StatusState,
   STATUS_ERROR,
-  STATUS_PROCESSING,
   STATUS_SUCCESS,
 } from '../../utils/input-statuses';
+import { ServerStatusContext } from '../../utils/server-status-context';
 import FormStatusIndicator from './form-status-indicator';
 
 export default function CodecSelector() {

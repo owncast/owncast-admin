@@ -197,7 +197,8 @@ export default function AccessTokens() {
       title: 'Scopes',
       dataIndex: 'scopes',
       key: 'scopes',
-      render: ({ map }: string[]) => <>{map(scope => convertScopeStringToTag(scope))}</>,
+      // eslint-disable-next-line react/destructuring-assignment
+      render: scopes => <>{scopes.map(scope => convertScopeStringToTag(scope))}</>,
     },
     {
       title: 'Last Used',

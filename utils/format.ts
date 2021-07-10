@@ -1,3 +1,5 @@
+import UAParser from 'ua-parser-js';
+
 export function formatIPAddress(ipAddress: string): string {
   const ipAddressComponents = ipAddress.split(':')
 
@@ -45,4 +47,15 @@ export function makeAndStringFromArray(arr: string[]): string {
   const firsts = arr.slice(0, arr.length - 1);
   const last = arr[arr.length - 1];
   return `${firsts.join(', ')} and ${last}`;
+}
+
+export function formatUAstring(uaString: string) {
+  const parser = UAParser(uaString);
+  const { device, os, browser } = parser;
+  const { major: browserVersion, name } = browser;
+  const { version: osVersion, name: osName } = os;
+  const { model, type } = device;
+  const deviceString = model || type ? ` (${model || type})` : '';
+  return `${name} ${browserVersion} on ${osName} ${osVersion}
+  ${deviceString}`;
 }

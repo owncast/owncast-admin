@@ -20,7 +20,7 @@ export default function UserTable({ data }: UserTableProps) {
       render: date => format(new Date(date), 'MMM d H:mma'),
     },
     {
-      title: 'Disabled',
+      title: 'Disabled at',
       dataIndex: 'disabledAt',
       key: 'disabledAt',
       render: date => (date ? format(new Date(date), 'MMM d H:mma') : null),
@@ -33,14 +33,13 @@ export default function UserTable({ data }: UserTableProps) {
   ];
 
   return (
-    <>
-      <Table
-        pagination={{ hideOnSinglePage: true }}
-        columns={columns}
-        dataSource={data}
-        rowKey="id"
-      />
-    </>
+    <Table
+      pagination={{ hideOnSinglePage: true }}
+      columns={columns}
+      dataSource={data}
+      size="small"
+      rowKey="id"
+    />
   );
 }
 

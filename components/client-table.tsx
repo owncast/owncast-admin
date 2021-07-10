@@ -4,11 +4,17 @@ import { formatDistanceToNow } from 'date-fns';
 import { User } from '../types/chat';
 import UserPopover from './user-popover';
 import BlockUserButton from './block-user-button';
+import { formatUAstring } from '../utils/format';
 
 export default function ClientTable({ data }: ClientTableProps) {
   const columns = [
     {
-      title: 'User name',
+      title: 'Block?',
+      key: 'block',
+      render: (_, row) => <BlockUserButton user={row.user} enabled={!!row.disabledAt} />,
+    },
+    {
+      title: 'User Name',
       key: 'username',
       // eslint-disable-next-line react/destructuring-assignment
       render: client => <UserPopover user={client.user}>{client.user.displayName}</UserPopover>,
@@ -34,17 +40,13 @@ export default function ClientTable({ data }: ClientTableProps) {
       title: 'User Agent',
       dataIndex: 'userAgent',
       key: 'userAgent',
+      render: (ua: string) => formatUAstring(ua),
     },
     {
       title: 'Location',
       dataIndex: 'geo',
       key: 'geo',
       render: geo => (geo ? `${geo.regionName}, ${geo.countryCode}` : '-'),
-    },
-    {
-      title: 'Block',
-      key: 'block',
-      render: (_, row) => <BlockUserButton user={row.user} enabled={!!row.disabledAt} />,
     },
   ];
 
@@ -53,6 +55,7 @@ export default function ClientTable({ data }: ClientTableProps) {
       pagination={{ hideOnSinglePage: true }}
       columns={columns}
       dataSource={data}
+      size="small"
       rowKey="id"
     />
   );

@@ -37,7 +37,7 @@ export default function BlockUserButton({ user, enabled }: BlockUserButtonProps)
       okText="Absolutely"
       cancelText="No"
     >
-      <Button>{title}</Button>
+      <Button size="small">{title}</Button>
     </Popconfirm>
   );
 }

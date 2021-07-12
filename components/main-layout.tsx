@@ -36,7 +36,7 @@ export default function MainLayout(props) {
 
   const context = useContext(ServerStatusContext);
   const { serverConfig, online, broadcaster, versionNumber } = context || {};
-  const { instanceDetails } = serverConfig;
+  const { instanceDetails, chatDisabled } = serverConfig;
 
   const [currentStreamTitle, setCurrentStreamTitle] = useState('');
 
@@ -78,7 +78,7 @@ export default function MainLayout(props) {
   const upgradeMenuItemStyle = upgradeVersion ? 'block' : 'none';
   const upgradeVersionString = `${upgradeVersion}` || '';
   const upgradeMessage = `Upgrade to v${upgradeVersionString}`;
-  const chatMenuItemStyle = !serverConfig.chatDisabled ? 'block' : 'none';
+  const chatMenuItemStyle = chatDisabled ? 'none' : 'block';
 
   const clearAlertMessage = () => {
     alertMessage.setMessage(null);

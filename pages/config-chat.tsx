@@ -16,8 +16,7 @@ export default function ConfigChat() {
   const serverStatusData = useContext(ServerStatusContext);
 
   const { serverConfig } = serverStatusData || {};
-  const { chatDisabled } = serverConfig;
-  const { usernameBlocklist } = serverConfig;
+  const { chatDisabled, usernameBlocklist } = serverConfig;
 
   const handleFieldChange = ({ fieldName, value }: UpdateArgs) => {
     setFormDataValues({

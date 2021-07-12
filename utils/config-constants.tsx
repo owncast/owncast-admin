@@ -177,7 +177,7 @@ export const DEFAULT_VARIANT_STATE: VideoVariant = {
 
 export const FIELD_PROPS_DISABLE_CHAT = {
   apiPath: API_CHAT_DISABLE,
-  configPath: 'chatDisabled',
+  configPath: '',
   label: 'Disable chat',
   tip: 'Disable chat functionality from your Owncast server.',
   useSubmit: true,
@@ -186,7 +186,7 @@ export const FIELD_PROPS_DISABLE_CHAT = {
 export const TEXTFIELD_PROPS_CHAT_USERNAME_BLOCKLIST = {
   apiPath: API_CHAT_USERNAME_BLOCKLIST,
   placeholder: 'admin, god, owncast, stewiegriffin',
-  label: 'Disallowed usernames',
+  label: 'Forbidden usernames',
   tip: 'A comma seperated list of chat usernames you disallow.',
 };
 

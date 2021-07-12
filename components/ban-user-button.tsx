@@ -35,12 +35,11 @@ export default function BanUserButton({ user, isEnabled, label, onClick }: BanUs
   ) : (
     <QuestionCircleFilled style={{ color: 'var(--ant-warning)' }} />
   );
-  const messageActionString = isEnabled ? 'remove' : 'restore';
 
   const content = (
     <>
-      Are you sure you want to {actionString} <strong>{user.displayName}</strong> and{' '}
-      {messageActionString} their messages?
+      Are you sure you want to {actionString} <strong>{user.displayName}</strong>
+      {isEnabled ? ' and remove their messages?' : '?'}
     </>
   );
 

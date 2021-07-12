@@ -58,6 +58,7 @@ export default function UserPopover({ user, connectionInfo, children }: UserPopo
 
       <Modal
         destroyOnClose
+        width={600}
         cancelText="Close"
         okButtonProps={{ style: { display: 'none' } }}
         title={`User details: ${displayName}`}

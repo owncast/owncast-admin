@@ -7,7 +7,7 @@ import ClientTable from '../../components/client-table';
 
 const { Title } = Typography;
 
-const FETCH_INTERVAL = 10 * 1000; // 10 sec
+export const FETCH_INTERVAL = 10 * 1000; // 10 sec
 
 export default function ChatUsers() {
   const context = useContext(ServerStatusContext);

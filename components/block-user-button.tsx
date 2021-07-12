@@ -10,23 +10,23 @@ interface BlockUserButtonProps {
   onClick?: () => void;
 }
 export default function BlockUserButton({ user, isEnabled, label, onClick }: BlockUserButtonProps) {
-  async function buttonClicked({ id }) {
+  async function buttonClicked({ id }): Promise<Boolean> {
     const data = {
       userId: id,
       enabled: !isEnabled, // set user to this value
     };
-
     try {
-      await fetchData(USER_ENABLED_TOGGLE, {
+      const result = await fetchData(USER_ENABLED_TOGGLE, {
         data,
         method: 'POST',
         auth: true,
       });
-      onClick?.();
+      return result.success;
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
     }
+    return false;
   }
 
   const actionString = isEnabled ? 'ban' : 'unban';
@@ -49,7 +49,20 @@ export default function BlockUserButton({ user, isEnabled, label, onClick }: Blo
       title: `Confirm ${actionString}`,
       content,
       onCancel: () => {},
-      onOk: () => buttonClicked(user),
+      onOk: () =>
+        new Promise((resolve, reject) => {
+          const result = buttonClicked(user);
+          if (result) {
+            // wait a bit before closing so the user/client tables repopulate
+            // GW: TODO: put users/clients data in global app context instead, then call a function here to update that state. (current in another branch)
+            setTimeout(() => {
+              resolve(result);
+              onClick?.();
+            }, 5000);
+          } else {
+            reject();
+          }
+        }),
       okType: 'danger',
       okText: isEnabled ? 'Absolutely' : null,
       icon,

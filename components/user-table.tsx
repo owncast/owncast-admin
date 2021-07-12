@@ -1,9 +1,9 @@
 import { Table } from 'antd';
 import format from 'date-fns/format';
+import { SortOrder } from 'antd/lib/table/interface';
 import { User } from '../types/chat';
 import UserPopover from './user-popover';
 import BanUserButton from './ban-user-button';
-import { SortOrder } from 'antd/lib/table/interface';
 
 export function formatDisplayDate(date: string | Date) {
   return format(new Date(date), 'MMM d H:mma');
@@ -33,7 +33,7 @@ export default function UserTable({ data }: UserTableProps) {
       title: 'Disabled at',
       dataIndex: 'disabledAt',
       key: 'disabledAt',
-      defaultSortOrder: 'descend',
+      defaultSortOrder: 'descend' as SortOrder,
       render: (date: Date) => (date ? formatDisplayDate(date) : null),
       sorter: (a: any, b: any) =>
         new Date(a.disabledAt).getTime() - new Date(b.disabledAt).getTime(),

@@ -28,13 +28,16 @@ export default function UserTable({ data }: UserTableProps) {
     {
       title: '',
       key: 'block',
-      render: (_, user) => <BlockUserButton user={user} enabled={!!user.disabledAt} />,
+      render: (_, user) => (
+        <BlockUserButton popPlacement="topRight" user={user} enabled={!!user.disabledAt} />
+      ),
     },
   ];
 
   return (
     <Table
       pagination={{ hideOnSinglePage: true }}
+      className="table-container"
       columns={columns}
       dataSource={data}
       size="small"

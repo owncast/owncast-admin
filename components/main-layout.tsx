@@ -148,7 +148,7 @@ export default function MainLayout(props) {
 
           <SubMenu
             key="chat-config"
-            title="Chat"
+            title="Chat &amp; Users"
             icon={<MessageOutlined />}
             style={{ display: chatMenuItemStyle }}
           >

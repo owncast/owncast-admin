@@ -9,11 +9,6 @@ import { formatUAstring } from '../utils/format';
 export default function ClientTable({ data }: ClientTableProps) {
   const columns = [
     {
-      title: 'Block?',
-      key: 'block',
-      render: (_, row) => <BlockUserButton user={row.user} enabled={!!row.disabledAt} />,
-    },
-    {
       title: 'User Name',
       key: 'username',
       // eslint-disable-next-line react/destructuring-assignment
@@ -48,10 +43,18 @@ export default function ClientTable({ data }: ClientTableProps) {
       key: 'geo',
       render: geo => (geo ? `${geo.regionName}, ${geo.countryCode}` : '-'),
     },
+    {
+      title: '',
+      key: 'block',
+      render: (_, row) => (
+        <BlockUserButton popPlacement="topRight" user={row.user} enabled={!!row.disabledAt} />
+      ),
+    },
   ];
 
   return (
     <Table
+      className="table-container"
       pagination={{ hideOnSinglePage: true }}
       columns={columns}
       dataSource={data}

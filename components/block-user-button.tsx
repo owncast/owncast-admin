@@ -1,4 +1,5 @@
-import { Popconfirm, Button } from 'antd';
+import { Modal, Button } from 'antd';
+import { ExclamationCircleFilled, QuestionCircleFilled, StopTwoTone } from '@ant-design/icons';
 import { USER_ENABLED_TOGGLE, fetchData } from '../utils/apis';
 import { User } from '../types/chat';
 
@@ -6,7 +7,6 @@ interface BlockUserButtonProps {
   user: User;
   enabled: Boolean;
 }
-
 export default function BlockUserButton({ user, enabled }: BlockUserButtonProps) {
   async function buttonClicked({ id }) {
     const data = {
@@ -15,7 +15,7 @@ export default function BlockUserButton({ user, enabled }: BlockUserButtonProps)
     };
 
     try {
-      await fetchData(`${USER_ENABLED_TOGGLE}`, {
+      await fetchData(USER_ENABLED_TOGGLE, {
         data,
         method: 'POST',
         auth: true,
@@ -26,18 +26,40 @@ export default function BlockUserButton({ user, enabled }: BlockUserButtonProps)
     }
   }
 
-  const title = enabled ? 'Unblock' : 'Block';
+  const actionString = enabled ? 'unblock' : 'block';
+  const icon = enabled ? (
+    <QuestionCircleFilled style={{ color: 'var(--ant-warning)' }} />
+  ) : (
+    <ExclamationCircleFilled style={{ color: 'var(--ant-error)' }} />
+  );
+  const messageActionString = enabled ? 'restore' : 'remove';
+
+  const content = (
+    <>
+      Are you sure you want to {actionString} <strong>{user.displayName}</strong> and{' '}
+      {messageActionString} their messages?
+    </>
+  );
+
+  const confirmBlockAction = () => {
+    Modal.confirm({
+      title: `Confirm ${actionString}`,
+      content,
+      onCancel: () => {},
+      onOk: () => buttonClicked(user),
+      okType: 'danger',
+      okText: enabled ? null : 'Absolutely',
+      icon,
+    });
+  };
 
   return (
-    <Popconfirm
-      title={`Are you sure you want to ${enabled ? 'unblock' : 'block'} ${
-        user.displayName
-      } from chat and remove all of their messages?`}
-      onConfirm={() => buttonClicked(user)}
-      okText="Absolutely"
-      cancelText="No"
+    <Button
+      onClick={confirmBlockAction}
+      size="small"
+      icon={enabled ? null : <StopTwoTone twoToneColor="#ff4d4f" />}
     >
-      <Button size="small">{title}</Button>
-    </Popconfirm>
+      {actionString}
+    </Button>
   );
 }

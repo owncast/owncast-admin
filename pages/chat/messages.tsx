@@ -234,7 +234,7 @@ export default function Chat() {
       </div>
       <Table
         size="small"
-        className="messages-table"
+        className="table-container"
         pagination={{ pageSize: 100 }}
         scroll={{ y: 540 }}
         rowClassName={record => (record.hiddenAt ? 'hidden' : '')}

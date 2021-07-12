@@ -66,7 +66,7 @@ export default function ChatUsers() {
   );
   return (
     <>
-      <Title>Users in Chat</Title>
+      <Title>Chat Participants</Title>
       {connectedUsers}
       <br />
       <br />

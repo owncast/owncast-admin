@@ -4,33 +4,39 @@ import { User } from '../types/chat';
 import UserPopover from './user-popover';
 import BlockUserButton from './block-user-button';
 
+export function formatDisplayDate(date: string | Date) {
+  return format(new Date(date), 'MMM d H:mma');
+}
 export default function UserTable({ data }: UserTableProps) {
   const columns = [
     {
-      title: 'Display Name',
+      title: 'Last Known Display Name',
       dataIndex: 'displayName',
       key: 'displayName',
       // eslint-disable-next-line react/destructuring-assignment
-      render: (_, user) => <UserPopover user={user}>{user.displayName}</UserPopover>,
+      render: (displayName: string, user: User) => (
+        <UserPopover user={user}>
+          <span className="display-name">{displayName}</span>
+        </UserPopover>
+      ),
     },
     {
       title: 'Created',
       dataIndex: 'createdAt',
       key: 'createdAt',
-      render: date => format(new Date(date), 'MMM d H:mma'),
+      render: (date: Date) => formatDisplayDate(date),
     },
     {
       title: 'Disabled at',
       dataIndex: 'disabledAt',
       key: 'disabledAt',
-      render: date => (date ? format(new Date(date), 'MMM d H:mma') : null),
+      render: (date: Date) => (date ? formatDisplayDate(date) : null),
     },
     {
       title: '',
       key: 'block',
-      render: (_, user) => (
-        <BlockUserButton popPlacement="topRight" user={user} enabled={!!user.disabledAt} />
-      ),
+      className: 'actions-col',
+      render: (_, user) => <BlockUserButton user={user} isEnabled={!user.disabledAt} />,
     },
   ];
 

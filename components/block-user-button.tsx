@@ -5,13 +5,15 @@ import { User } from '../types/chat';
 
 interface BlockUserButtonProps {
   user: User;
-  enabled: Boolean;
+  isEnabled: Boolean; // = this user's current status
+  label?: string;
+  onClick?: () => void;
 }
-export default function BlockUserButton({ user, enabled }: BlockUserButtonProps) {
+export default function BlockUserButton({ user, isEnabled, label, onClick }: BlockUserButtonProps) {
   async function buttonClicked({ id }) {
     const data = {
       userId: id,
-      enabled,
+      enabled: !isEnabled, // set user to this value
     };
 
     try {
@@ -20,19 +22,20 @@ export default function BlockUserButton({ user, enabled }: BlockUserButtonProps)
         method: 'POST',
         auth: true,
       });
+      onClick?.();
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
     }
   }
 
-  const actionString = enabled ? 'unblock' : 'block';
-  const icon = enabled ? (
-    <QuestionCircleFilled style={{ color: 'var(--ant-warning)' }} />
-  ) : (
+  const actionString = isEnabled ? 'ban' : 'unban';
+  const icon = isEnabled ? (
     <ExclamationCircleFilled style={{ color: 'var(--ant-error)' }} />
+  ) : (
+    <QuestionCircleFilled style={{ color: 'var(--ant-warning)' }} />
   );
-  const messageActionString = enabled ? 'restore' : 'remove';
+  const messageActionString = isEnabled ? 'remove' : 'restore';
 
   const content = (
     <>
@@ -48,7 +51,7 @@ export default function BlockUserButton({ user, enabled }: BlockUserButtonProps)
       onCancel: () => {},
       onOk: () => buttonClicked(user),
       okType: 'danger',
-      okText: enabled ? null : 'Absolutely',
+      okText: isEnabled ? 'Absolutely' : null,
       icon,
     });
   };
@@ -57,9 +60,14 @@ export default function BlockUserButton({ user, enabled }: BlockUserButtonProps)
     <Button
       onClick={confirmBlockAction}
       size="small"
-      icon={enabled ? null : <StopTwoTone twoToneColor="#ff4d4f" />}
+      icon={isEnabled ? <StopTwoTone twoToneColor="#ff4d4f" /> : null}
+      className="block-user-button"
     >
-      {actionString}
+      {label || actionString}
     </Button>
   );
 }
+BlockUserButton.defaultProps = {
+  label: '',
+  onClick: null,
+};

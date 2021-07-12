@@ -133,4 +133,12 @@ input {
       }
     }
   }
+  .ant-table-cell {
+    &.actions-col {
+      text-align: right;
+    }
+  }
+  td.number-col {
+    text-align: right;
+  }
 }

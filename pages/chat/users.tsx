@@ -5,7 +5,7 @@ import { CONNECTED_CLIENTS, fetchData, DISABLED_USERS } from '../../utils/apis';
 import UserTable from '../../components/user-table';
 import ClientTable from '../../components/client-table';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const FETCH_INTERVAL = 10 * 1000; // 10 sec
 
@@ -66,11 +66,11 @@ export default function ChatUsers() {
   );
   return (
     <>
-      <Title>Chat Participants</Title>
+      <Title>Connected Chat Participants</Title>
       {connectedUsers}
       <br />
       <br />
-      <Title>Blocked Chat Users</Title>
+      <Title>Banned Users</Title>
       <UserTable data={disabledUsers} />
     </>
   );

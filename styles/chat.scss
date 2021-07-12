@@ -103,4 +103,47 @@
   padding: 0;
   margin: 0;
   cursor: pointer;
+  outline: none;
+
+  .display-name {
+    color: var(--white);
+    border-bottom: 1px dotted var(--white-50);
+  }
+  &:hover {
+    .display-name {
+      border-color: var(--white);
+    }
+  }
+}
+.user-details {
+  h5 {
+    color: var(--white);
+  }
+  .created-at {
+    font-size: .75em;
+    font-style: italic;
+  }
+  .connection-info {
+    font-size: .88em;
+  }
+  .previous-names-list {
+    font-size: .88em;
+    .user-name-item {
+      font-family: monospace;
+    }
+    .latest {   
+      font-style: italic;
+      .user-name-item {
+        font-weight: bold;
+        font-style: normal;
+        color: var(--pink);
+      }
+    }
+  }
+  .ant-divider {
+    border-color: var(--white-25);
+  }
+}
+.block-user-button {
+  text-transform: capitalize;
 }

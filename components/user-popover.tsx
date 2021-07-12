@@ -1,3 +1,5 @@
+// This displays a clickable user name (or whatever children element you provide), and displays a simple tooltip of created time. OnClick a modal with more information about the user is displayed.
+
 import { useState } from 'react';
 import { Divider, Modal, Tooltip, Typography, Row, Col } from 'antd';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
@@ -45,7 +47,15 @@ export default function UserPopover({ user, connectionInfo, children }: UserPopo
 
   return (
     <>
-      <Tooltip title={`Created at: ${createdAtDate}`} placement="bottomLeft">
+      <Tooltip
+        title={
+          <>
+            Created at: {createdAtDate}.
+            <br /> Click for more info.
+          </>
+        }
+        placement="bottomLeft"
+      >
         <button
           type="button"
           aria-label="Display more details about this user"
@@ -68,7 +78,7 @@ export default function UserPopover({ user, connectionInfo, children }: UserPopo
       >
         <div className="user-details">
           <Typography.Title level={4}>{displayName}</Typography.Title>
-          <p className="created-at">User created at {createdAtDate}</p>
+          <p className="created-at">User created at {createdAtDate}.</p>
           <Row gutter={16}>
             {connectionInfo && (
               <Col md={lastNameChangeDate ? 12 : 24}>

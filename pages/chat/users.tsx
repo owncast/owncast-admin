@@ -5,7 +5,9 @@ import { CONNECTED_CLIENTS, fetchData, DISABLED_USERS } from '../../utils/apis';
 import UserTable from '../../components/user-table';
 import ClientTable from '../../components/client-table';
 
-const FETCH_INTERVAL = 10 * 1000; // 10 sec
+const { Title } = Typography;
+
+export const FETCH_INTERVAL = 10 * 1000; // 10 sec
 
 export default function ChatUsers() {
   const context = useContext(ServerStatusContext);
@@ -43,9 +45,9 @@ export default function ChatUsers() {
   }, [online]);
 
   const connectedUsers = online ? (
-    <p>
+    <>
       <ClientTable data={clients} />
-      <Typography.Text type="secondary">
+      <p className="description">
         Visit the{' '}
         <a
           href="https://owncast.online/docs/viewers/?source=admin"
@@ -55,24 +57,21 @@ export default function ChatUsers() {
           documentation
         </a>{' '}
         to configure additional details about your viewers.
-      </Typography.Text>{' '}
-    </p>
+      </p>
+    </>
   ) : (
-    <p>
+    <p className="description">
       When a stream is active and chat is enabled, connected chat clients will be displayed here.
     </p>
   );
   return (
-    <p>
-      <div>
-        <Typography.Title>Connected</Typography.Title>
-        {connectedUsers}
-
-        <p>
-          <Typography.Title>Blocked</Typography.Title>
-          <UserTable data={disabledUsers} />
-        </p>
-      </div>
-    </p>
+    <>
+      <Title>Connected Chat Participants</Title>
+      {connectedUsers}
+      <br />
+      <br />
+      <Title>Banned Users</Title>
+      <UserTable data={disabledUsers} />
+    </>
   );
 }

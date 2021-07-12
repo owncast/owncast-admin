@@ -2,45 +2,53 @@ import { Table } from 'antd';
 import format from 'date-fns/format';
 import { User } from '../types/chat';
 import UserPopover from './user-popover';
-import BlockUserButton from './block-user-button';
+import BanUserButton from './ban-user-button';
 
+export function formatDisplayDate(date: string | Date) {
+  return format(new Date(date), 'MMM d H:mma');
+}
 export default function UserTable({ data }: UserTableProps) {
   const columns = [
     {
-      title: 'Display Name',
+      title: 'Last Known Display Name',
       dataIndex: 'displayName',
       key: 'displayName',
       // eslint-disable-next-line react/destructuring-assignment
-      render: (_, user) => <UserPopover user={user}>{user.displayName}</UserPopover>,
+      render: (displayName: string, user: User) => (
+        <UserPopover user={user}>
+          <span className="display-name">{displayName}</span>
+        </UserPopover>
+      ),
     },
     {
       title: 'Created',
       dataIndex: 'createdAt',
       key: 'createdAt',
-      render: date => format(new Date(date), 'MMM d H:mma'),
+      render: (date: Date) => formatDisplayDate(date),
     },
     {
-      title: 'Disabled',
+      title: 'Disabled at',
       dataIndex: 'disabledAt',
       key: 'disabledAt',
-      render: date => (date ? format(new Date(date), 'MMM d H:mma') : null),
+      render: (date: Date) => (date ? formatDisplayDate(date) : null),
     },
     {
       title: '',
       key: 'block',
-      render: (_, user) => <BlockUserButton user={user} enabled={!!user.disabledAt} />,
+      className: 'actions-col',
+      render: (_, user) => <BanUserButton user={user} isEnabled={!user.disabledAt} />,
     },
   ];
 
   return (
-    <>
-      <Table
-        pagination={{ hideOnSinglePage: true }}
-        columns={columns}
-        dataSource={data}
-        rowKey="id"
-      />
-    </>
+    <Table
+      pagination={{ hideOnSinglePage: true }}
+      className="table-container"
+      columns={columns}
+      dataSource={data}
+      size="small"
+      rowKey="id"
+    />
   );
 }
 

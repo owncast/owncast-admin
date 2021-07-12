@@ -22,3 +22,13 @@ export interface UsernameHistory {
   displayName: string;
   changedAt: Date;
 }
+
+export interface UserConnectionInfo {
+  connectedAt: Date;
+  messageCount: number;
+  userAgent: string;
+}
+
+export interface Client extends UserConnectionInfo {
+  user: User;
+}

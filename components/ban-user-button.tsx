@@ -3,13 +3,13 @@ import { ExclamationCircleFilled, QuestionCircleFilled, StopTwoTone } from '@ant
 import { USER_ENABLED_TOGGLE, fetchData } from '../utils/apis';
 import { User } from '../types/chat';
 
-interface BlockUserButtonProps {
+interface BanUserButtonProps {
   user: User;
   isEnabled: Boolean; // = this user's current status
   label?: string;
   onClick?: () => void;
 }
-export default function BlockUserButton({ user, isEnabled, label, onClick }: BlockUserButtonProps) {
+export default function BanUserButton({ user, isEnabled, label, onClick }: BanUserButtonProps) {
   async function buttonClicked({ id }): Promise<Boolean> {
     const data = {
       userId: id,
@@ -58,7 +58,7 @@ export default function BlockUserButton({ user, isEnabled, label, onClick }: Blo
             setTimeout(() => {
               resolve(result);
               onClick?.();
-            }, 5000);
+            }, 3000);
           } else {
             reject();
           }
@@ -80,7 +80,7 @@ export default function BlockUserButton({ user, isEnabled, label, onClick }: Blo
     </Button>
   );
 }
-BlockUserButton.defaultProps = {
+BanUserButton.defaultProps = {
   label: '',
   onClick: null,
 };

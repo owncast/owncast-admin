@@ -4,7 +4,7 @@ import { ColumnsType } from 'antd/es/table';
 import { formatDistanceToNow } from 'date-fns';
 import { Client } from '../types/chat';
 import UserPopover from './user-popover';
-import BlockUserButton from './block-user-button';
+import BanUserButton from './ban-user-button';
 import { formatUAstring } from '../utils/format';
 
 export default function ClientTable({ data }: ClientTableProps) {
@@ -59,7 +59,7 @@ export default function ClientTable({ data }: ClientTableProps) {
       title: '',
       key: 'block',
       className: 'actions-col',
-      render: (_, row) => <BlockUserButton user={row.user} isEnabled={!row.user.disabledAt} />,
+      render: (_, row) => <BanUserButton user={row.user} isEnabled={!row.user.disabledAt} />,
     },
   ];
 

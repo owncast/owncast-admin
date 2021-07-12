@@ -3,7 +3,7 @@ import { Divider, Modal, Tooltip, Typography, Row, Col } from 'antd';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import format from 'date-fns/format';
 import { ReactNode } from 'react-markdown';
-import BlockUserbutton from './block-user-button';
+import BlockUserbutton from './ban-user-button';
 
 import { User, UserConnectionInfo } from '../types/chat';
 import { formatDisplayDate } from './user-table';

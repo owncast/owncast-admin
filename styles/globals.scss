@@ -125,7 +125,7 @@ input {
   }
   .ant-table-row.hidden {
     .ant-table-cell {
-      color: var(--black-35)
+      color: var(--black-35);
     }
     @media (prefers-color-scheme: dark) {
       .ant-table-cell {

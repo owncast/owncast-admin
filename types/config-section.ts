@@ -100,6 +100,6 @@ export interface ConfigDetails {
   yp: ConfigDirectoryFields;
   supportedCodecs: string[];
   videoCodec: string;
-  usernameBlocklist: string;
+  forbiddenUsernames: string[];
   chatDisabled: boolean;
 }

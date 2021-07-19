@@ -47,7 +47,7 @@ export const initialServerConfigState: ConfigDetails = {
   externalActions: [],
   supportedCodecs: [],
   videoCodec: '',
-  usernameBlocklist: '',
+  forbiddenUsernames: [],
   chatDisabled: false,
 };
 

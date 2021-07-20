@@ -16,7 +16,6 @@ import {
   QuestionCircleOutlined,
   MessageOutlined,
   ExperimentOutlined,
-  UserOutlined,
 } from '@ant-design/icons';
 import classNames from 'classnames';
 import { upgradeVersionAvailable } from '../utils/apis';
@@ -152,11 +151,11 @@ export default function MainLayout(props) {
             icon={<MessageOutlined />}
             style={{ display: chatMenuItemStyle }}
           >
-            <Menu.Item key="messages" icon={<MessageOutlined />} title="Chat utilities">
+            <Menu.Item key="messages" title="Chat utilities">
               <Link href="/chat/messages">Messages</Link>
             </Menu.Item>
 
-            <Menu.Item key="chat-users" icon={<UserOutlined />} title="Chat utilities">
+            <Menu.Item key="chat-users" title="Chat utilities">
               <Link href="/chat/users">Users</Link>
             </Menu.Item>
           </SubMenu>
